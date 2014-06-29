@@ -7,8 +7,8 @@ vlc = require('./providers/vlc-chan');
  * returns a live stream url.
  */
 var channels = {
-        "fr2_hd": vlc.chan("localhost", "FBX: France 2 HD (TNT)"), 
-        "fr5_hd": vlc.chan("localhost", "FBX: France 5 (HD)") 
+        "fr2_hd": vlc.chan("FBX: France 2 HD (TNT)", "localhost"),
+        "fr5_hd": vlc.chan("FBX: France 5 (HD)", "localhost")
 };
 
 module.exports = channels;

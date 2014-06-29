@@ -1,8 +1,12 @@
 http = require('http');
 libxmljs = require('libxmljs');
+require('array.prototype.find');
 
 var vlc = {};
 
+/*
+ * VLC channel control helpers (find channel / play / stop)
+ */
 function vlc_get_chanid(host, channel, cb) {
         var xml = "";
 
@@ -54,17 +58,87 @@ function vlc_stop(host)
         req.end();
 }
 
-function make_vlc(host, channel) {
-        return {
+/*
+ * Create channel object
+ */
+function vlc_declare_channel(channel, host) {
+        var vlc_channel = {
+                /* public playback routines : start/stop VLC channel */
                 "start": function(play_cb) {
-                        vlc_play(host, channel, play_cb);
+                        if (this.cur_host) {
+                                console.log("already started !");
+                                return;
+                        }
+
+                        this.cur_host = this.getHost();
+
+                        console.log("got host : " + this.cur_host.host);
+
+                        vlc_play(this.cur_host.host, channel, play_cb);
                 },
                 "stop": function() {
-                        vlc_stop(host);
+                        vlc_stop(this.cur_host.host);
+
+                        this.cur_host.release();
+                        this.cur_host = undefined;
+                },
+
+                /* load balancing : attach server pool to channel */
+                "pool": function(servers) {
+                        this.servers = servers;
+
+                        /* return this when pool is called to enable chaining
+                         * with vlc.chan in setup file */
+                        return this;
+                },
+
+                /* internal use, find free host in pool */
+                "getHost": function() {
+                        var srv = this.servers.find(function test(el) {
+                                if (el.isAvailable())
+                                        return true;
+                                return false;
+                        });
+
+                        srv.take();
+
+                        return srv;
                 }
         };
+
+        /* if an host was provided register an "always available" singleton */
+        if (host) {
+                vlc_channel.servers = declare_server(host);
+                vlc_channel.servers.isAvailable = function() { return true; };
+        }
+
+        /* return channel object */
+        return vlc_channel;
 }
 
-vlc.chan = function (host, channel) { return make_vlc(host, channel); };
+/*
+ * Create server object
+ */
+function vlc_declare_server(host) {
+        var vlc_server = {
+                "host": host,
+                "used": 0,
+                "isAvailable": function () {
+                        return this.used == 0;
+                },
+                "take": function() {
+                        this.used = 1;
+                },
+                "release": function() {
+                        this.used = 0;
+                }
+        };
+
+        return vlc_server;
+}
+
+/* build vlc module */
+vlc.chan = function (channel, host) { return vlc_declare_channel(channel, host); };
+vlc.server = function (hosts) { return vlc_declare_server(hosts); };
 
 module.exports = vlc;
