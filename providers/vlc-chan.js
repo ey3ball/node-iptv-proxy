@@ -65,16 +65,17 @@ function vlc_declare_channel(channel, host) {
         var vlc_channel = {
                 /* public playback routines : start/stop VLC channel */
                 "start": function(play_cb) {
-                        if (this.cur_host) {
-                                console.log("already started !");
-                                return;
-                        }
+                        if (this.cur_host)
+                                throw "Unexpected";
 
                         this.cur_host = this.getHost();
+                        if (!this.cur_host) {
+                                play_cb(undefined);
+                        } else {
+                                console.log("got host : " + this.cur_host.host);
 
-                        console.log("got host : " + this.cur_host.host);
-
-                        vlc_play(this.cur_host.host, channel, play_cb);
+                                vlc_play(this.cur_host.host, channel, play_cb);
+                        }
                 },
                 "stop": function() {
                         vlc_stop(this.cur_host.host);
@@ -100,7 +101,8 @@ function vlc_declare_channel(channel, host) {
                                 return false;
                         });
 
-                        srv.take();
+                        if (srv)
+                                srv.take();
 
                         return srv;
                 }

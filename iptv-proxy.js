@@ -144,6 +144,13 @@ srv = http.createServer(function(req, rsp) {
         channels[chan].start(function(stream) {
                 console.log("STREAM: " + stream);
 
+                if (!stream) {
+                        rsp.writeHead(503);
+                        rsp.end();
+
+                        return;
+                }
+
                 var req = http.request(stream, function(res) {
                         console.log("STREAM: " + stream + " got: " + res.statusCode);
 
