@@ -110,7 +110,7 @@ function vlc_declare_channel(channel, host) {
 
         /* if an host was provided register an "always available" singleton */
         if (host) {
-                vlc_channel.servers = vlc_declare_server(host);
+                vlc_channel.servers = [ vlc_declare_server(host) ];
                 vlc_channel.servers.isAvailable = function() { return true; };
         }
 
