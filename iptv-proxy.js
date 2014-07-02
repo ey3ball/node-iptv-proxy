@@ -2,6 +2,7 @@ http = require('http');
 url = require('url');
 require('array.prototype.findindex');
 util = require('util');
+express = require('express');
 
 channels = require('./channels_config');
 
@@ -115,26 +116,18 @@ streams = {
         }
 };
 
-srv = http.createServer(function(req, rsp) {
-        console.log("PROXY: ready");
+var app = express();
 
-        var path = url.parse(req.url).path.split("/");
+app.get('/stream/:chan', function(req, res) {
+        var chan = req.params.chan;
 
-        path.shift();
-        if (path[0] != "stream") {
-                console.log("PROXY: " + path[0] + " not found");
+        /* the express response is an instance of HttpServerResponse as well */
+        var stream_res = res;
 
-                rsp.writeHead(404);
-                rsp.end();
-                return;
-        }
-
-        var chan = path[1]; 
         if (!channels[chan]) {
                 console.log("PROXY: channel " + chan + " not found");
 
-                rsp.writeHead(404);
-                rsp.end();
+                res.send(404, "not found");
                 return;
         }
 
@@ -142,8 +135,8 @@ srv = http.createServer(function(req, rsp) {
                 console.log("STREAM: channel " + chan + " already subscribed");
 
                 var stream = streams.findChan(chan);
-                rsp.writeHead(200, stream.obj.headers);
-                streams.addClient(chan, rsp);
+                res.set(stream.obj.headers);
+                streams.addClient(chan, stream_res);
 
                 return;
         }
@@ -153,21 +146,20 @@ srv = http.createServer(function(req, rsp) {
                 console.log("STREAM: " + stream);
 
                 if (!stream) {
-                        rsp.writeHead(503);
-                        rsp.end();
-
+                        res.send(503, "Failed to start stream");
                         return;
                 }
 
                 var req = http.request(stream, function(res) {
                         console.log("STREAM: " + stream + " got: " + res.statusCode);
 
-                        rsp.writeHead(200, res.headers);
+                        stream_res.writeHead(200, res.headers);
 
                         streams.addChan(chan, this, res.headers);
-                        streams.addClient(chan, rsp);
+                        streams.addClient(chan, stream_res);
 
                         res.on('end', function() {
+                                console.log("KILL " + chan + " stream done");
                                 streams.killChan(chan);
                         });
 
@@ -179,19 +171,7 @@ srv = http.createServer(function(req, rsp) {
                 req.end();
         });
 
-        // var req = http.request("http://www.google.com", function(res) {
-        //         rsp.writeHead(200, res.headers);
-        //         console.log(res.headers);
-        //         res.on('end', function() {
-        //                 console.log('end');
-        //                 rsp.end();
-        //         });
 
-        //         res.on('data', function(chunk) {
-        //                 console.log('data');
-        //                 rsp.write(chunk, 'binary');
-        //         });
-        // });
+});
 
-        // req.end();
-}).listen(1234);
+app.listen(1234);
