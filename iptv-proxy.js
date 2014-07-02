@@ -76,7 +76,14 @@ streams = {
         },
 
         killClient: function(chan_id, handle) {
-                var stream = this.findChan(chan_id).obj;
+                var stream = this.findChan(chan_id);
+
+                /* an hanged client might close its connexion
+                 * after the channel has been killed */
+                if (!stream)
+                        return;
+
+                stream = stream.obj;
 
                 var found = stream.clients.findIndex(function (el) {
                         if (el == handle)
