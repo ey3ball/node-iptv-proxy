@@ -141,6 +141,7 @@ srv = http.createServer(function(req, rsp) {
                 return;
         }
 
+        console.log("START !!");
         channels[chan].start(function(stream) {
                 console.log("STREAM: " + stream);
 

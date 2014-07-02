@@ -1,5 +1,12 @@
 vlc = require('./providers/vlc-chan');
 
+function make_host(host) {
+        return {
+                control_url: "http://" + host,
+                stream_url: "http://" + host + "/stream"
+        };
+}
+
 /*
  * Basic example (one VLC server, two channels)
  *
@@ -7,8 +14,8 @@ vlc = require('./providers/vlc-chan');
  * returns a live stream url.
  */
 var basic_config = {
-        "fr2_hd": vlc.chan("FBX: France 2 HD (TNT)", "localhost"),
-        "fr5_hd": vlc.chan("FBX: France 5 (HD)", "localhost")
+        "fr2_hd": vlc.chan("FBX: France 2 HD (TNT)", make_host("localhost")),
+        "fr5_hd": vlc.chan("FBX: France 5 (HD)", make_host("localhost"))
 };
 
 /*
@@ -19,8 +26,8 @@ var basic_config = {
  *
  */
 
-var vlc1 = vlc.server("localhost:80");
-var vlc2 = vlc.server("localhost:81");
+var vlc1 = vlc.server(make_host("localhost:80"));
+var vlc2 = vlc.server(make_host("localhost:81"));
 
 var vlc_pool = [ vlc1, vlc2 ];
 

@@ -10,7 +10,7 @@ var vlc = {};
 function vlc_get_chanid(host, channel, cb) {
         var xml = "";
 
-        var req = http.request("http://" + host + "/requests/playlist.xml", function (res) {
+        var req = http.request(host.control_url + "/requests/playlist.xml", function (res) {
                 res.on('data', function(chunk) {
                         xml += chunk;
                 });
@@ -36,13 +36,13 @@ function vlc_get_chanid(host, channel, cb) {
 
 function vlc_play(host, channel, cb) {
         vlc_get_chanid(host, channel, function(id) {
-                var req = http.request("http://" + host +
+                var req = http.request(host.control_url +
                                        "/requests/status.xml?command=pl_play&id=" + id,
                                        function(res)
                         {
                                 console.log("PROVIDER: VLC server returned " + res.statusCode);
                                 if (res.statusCode == 200)
-                                        cb("http://" + host + "/stream");
+                                        cb(host.stream_url);
                         });
 
                 req.end();
@@ -51,7 +51,7 @@ function vlc_play(host, channel, cb) {
 
 function vlc_stop(host)
 {
-        var req = http.request("http://" + host + "/requests/status.xml?command=pl_stop", function(res) {
+        var req = http.request(host.control_url + "/requests/status.xml?command=pl_stop", function(res) {
                 console.log("PROVIDER: stopped " + host);
         });
 
