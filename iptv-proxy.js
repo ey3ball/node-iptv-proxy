@@ -118,6 +118,22 @@ streams = {
 
 var app = express();
 
+app.get('/', function (req, res) {
+        res.send("node-iptv-proxy");
+});
+
+app.get('/list', function(req, res) {
+        res.send({ channels: Object.keys(channels) });
+});
+
+app.get('/status', function(req, res){
+        res.send({
+                streams: streams.current.map(function(el) {
+                        return { id: el.id, clients: el.clients.length };
+                })
+        });
+});
+
 app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
