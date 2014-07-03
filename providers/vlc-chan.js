@@ -61,7 +61,7 @@ function vlc_stop(host)
 /*
  * Create channel object
  */
-function vlc_declare_channel(channel, host) {
+function vlc_declare_channel(channel) {
         var vlc_channel = {
                 /* public playback routines : start/stop VLC channel */
                 "start": function(play_cb) {
@@ -108,12 +108,6 @@ function vlc_declare_channel(channel, host) {
                 }
         };
 
-        /* if an host was provided register an "always available" singleton */
-        if (host) {
-                vlc_channel.servers = [ vlc_declare_server(host) ];
-                vlc_channel.servers.isAvailable = function() { return true; };
-        }
-
         /* return channel object */
         return vlc_channel;
 }
@@ -140,7 +134,7 @@ function vlc_declare_server(host) {
 }
 
 /* build vlc module */
-vlc.chan = function (channel, host) { return vlc_declare_channel(channel, host); };
+vlc.chan = function (channel) { return vlc_declare_channel(channel); };
 vlc.server = function (hosts) { return vlc_declare_server(hosts); };
 
 module.exports = vlc;
