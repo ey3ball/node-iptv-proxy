@@ -1,4 +1,4 @@
-vlc = require('./providers/vlc-chan');
+vlc = require('./providers/vlc-provider');
 
 function make_host(host) {
         return {
