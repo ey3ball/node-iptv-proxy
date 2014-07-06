@@ -127,9 +127,28 @@ app.get('/list', function(req, res) {
 });
 
 app.get('/status', function(req, res){
+        function decode_authdata(headers) {
+                var username = "";
+                try {
+                        username = new Buffer(headers['authorization'].replace("Basic ",""), 'base64')
+                                .toString().split(':')[0];
+                } catch(e) {
+                        username = "none";
+                }
+
+                return username;
+        }
+
         res.send({
                 streams: streams.current.map(function(el) {
-                        return { id: el.id, clients: el.clients.length };
+                        return { id: el.id,
+                                clients: el.clients.map(function(el) {
+                                        return { sent: el.socket.bytesWritten,
+                                                 remoteAddr: el.socket.remoteAddress,
+                                                 remotePort: el.socket.remotePort,
+                                                 username: decode_authdata(el.req.headers)
+                                        };
+                                }) };
                 })
         });
 });
