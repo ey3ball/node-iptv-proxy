@@ -151,7 +151,7 @@ app.get('/status', function(req, res){
                         return { id: el.id,
                                 clients: el.clients.map(function(el) {
                                         return { sent: el.socket.bytesWritten,
-                                                 remoteAddr: el.socket.remoteAddress,
+                                                 remoteAddr: el.req.headers['x-forwarded-for'] || el.req.connection.remoteAddress,
                                                  remotePort: el.socket.remotePort,
                                                  username: decode_authdata(el.req.headers)
                                         };
