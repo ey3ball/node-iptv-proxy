@@ -3,6 +3,7 @@ url = require('url');
 require('array.prototype.findindex');
 util = require('util');
 express = require('express');
+git = require('git-rev');
 
 channels = require('./channels_config');
 
@@ -124,6 +125,12 @@ app.get('/', function (req, res) {
 
 app.get('/list', function(req, res) {
         res.send({ channels: Object.keys(channels) });
+});
+
+app.get('/version', function(req, res) {
+        git.short(function(commit) {
+                res.send({ version: commit });
+        });
 });
 
 app.get('/status', function(req, res){
