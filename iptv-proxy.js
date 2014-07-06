@@ -182,7 +182,21 @@ app.get('/stream/:chan', function(req, res) {
                         res.on('data', function(chunk) {
                                 streams.sendData(chan, chunk);
                         });
+
+			res.on('error', function(e) {
+				console.log("STREAM: connexion closed unexpectedly - " + e.message);
+
+				/* cleanup */
+				channels[chan].stop();
+			});
                 });
+
+		req.on('error', function(e) {
+			console.log("STREAM: failed to start - " + e.message);
+
+			/* cleanup */
+			channels[chan].stop();
+		});
 
                 req.end();
         });
