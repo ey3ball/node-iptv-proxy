@@ -9,6 +9,64 @@ require('array.prototype.findindex');
 channels = require('./channels_config');
 streams = require('./lib/stream-manager');
 
+/*
+ * FIRE: grab a channel from a config and light it up !
+ * This is an useful glue between providers and the stream
+ * manager.
+ *
+ *  chan: channel name/id
+ *  ok_cb: success callback
+ *  err_cb: error callback
+ */
+function fire(chan, ok_cb, err_cb) {
+        function addHTTPChan(id, http_req) {
+                streams.addChan(id, http_req.res, http_req.res.headers,
+                                function() { http_req.abort() });
+        }
+
+        channels[chan].start(function(stream) {
+                console.log("STREAM: " + stream);
+
+                if (!stream) {
+                        err_cb();
+                        return;
+                }
+
+                var req = http.request(stream, function(res) {
+                        console.log("STREAM: " + stream + " got: " + res.statusCode);
+
+                        addHTTPChan(chan, this);
+
+                        /* cleanup routines when the source stream completes / errors out */
+                        res.on('end', function() {
+                                console.log("END: " + chan + " stream done");
+                                streams.killChan(chan);
+                        });
+
+			res.on('error', function(e) {
+				console.log("STREAM: connexion closed unexpectedly - " + e.message);
+
+				/* cleanup */
+				channels[chan].stop();
+			});
+
+                        ok_cb(res);
+                });
+
+		req.on('error', function(e) {
+			console.log("STREAM: failed to start - " + e.message);
+
+			/* cleanup */
+			channels[chan].stop();
+		});
+
+                req.end();
+        });
+}
+
+/*
+ * express webapp: expose a number of endpoints and APIs
+ */
 var app = express();
 
 app.get('/', function (req, res) {
@@ -55,11 +113,6 @@ app.get('/status', function(req, res){
 });
 
 app.get('/stream/:chan', function(req, res) {
-        function addHTTPChan(id, http_req) {
-                streams.addChan(id, http_req.res, http_req.res.headers,
-                                function() { http_req.abort() });
-        }
-
         var chan = req.params.chan;
 
         /* the express response is an instance of HttpServerResponse as well */
@@ -84,45 +137,13 @@ app.get('/stream/:chan', function(req, res) {
                 return;
         }
 
-        /* channel not streaming yet, fire a new session */
-        channels[chan].start(function(stream) {
-                console.log("STREAM: " + stream);
-
-                if (!stream) {
-                        res.send(503, "Failed to start stream");
-                        return;
-                }
-
-                var req = http.request(stream, function(res) {
-                        console.log("STREAM: " + stream + " got: " + res.statusCode);
-
-                        stream_res.writeHead(200, res.headers);
-
-                        addHTTPChan(chan, this);
-                        streams.addClient(chan, stream_res);
-
-                        /* cleanup routines when the source stream completes / errors out */
-                        res.on('end', function() {
-                                console.log("END: " + chan + " stream done");
-                                streams.killChan(chan);
-                        });
-
-			res.on('error', function(e) {
-				console.log("STREAM: connexion closed unexpectedly - " + e.message);
-
-				/* cleanup */
-				channels[chan].stop();
-			});
-                });
-
-		req.on('error', function(e) {
-			console.log("STREAM: failed to start - " + e.message);
-
-			/* cleanup */
-			channels[chan].stop();
-		});
-
-                req.end();
+        fire(chan, function(httpStream) {
+                /* ok_cb */
+                stream_res.writeHead(200, httpStream.headers);
+                streams.addClient(chan, stream_res);
+        }, function() {
+                /* err_cb */
+                res.send(503, "Failed to start stream");
         });
 });
 
