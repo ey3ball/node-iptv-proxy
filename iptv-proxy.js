@@ -103,7 +103,7 @@ app.get('/stream/:chan', function(req, res) {
 
                         /* cleanup routines when the source stream completes / errors out */
                         res.on('end', function() {
-                                console.log("KILL " + chan + " stream done");
+                                console.log("END: " + chan + " stream done");
                                 streams.killChan(chan);
                         });
 
