@@ -11,7 +11,7 @@ channels = require('./channels_config');
  * Stream dispatcher:
  * Keeps track of current video streams and clients.
  *
- * Video stream data is forwarded to the dispather, and then
+ * Video stream data is forwarded to the dispatcher, and then
  * to all subscribed clients. 
  */
 streams = {
@@ -38,22 +38,9 @@ streams = {
                 });
         },
 
-        findChan: function(id) {
-                found = this.current.findIndex(function (el) {
-                        if (el.id == id)
-                                return true;
-                        return false;
-                });
-
-                if (found == -1)
-                        return undefined;
-                else return { idx: found, obj: this.current[found] };
-        },
-
-        hasChan: function(id) {
-                return (this.findChan(id) != undefined);
-        },
-
+        /*
+         * Stop a channel stream
+         */
         killChan: function(id) {
                 console.log("KILLCHAN: " + id);
 
@@ -71,6 +58,9 @@ streams = {
                 this.current.splice(stream.idx, 1);
         },
 
+        /*
+         * Subscribe a client to a running channel stream
+         */
         addClient: function(chan_id, client_handle) {
                 try {
                         stream = this.findChan(chan_id).obj;
@@ -89,6 +79,10 @@ streams = {
                 }.bind(this));
         },
 
+        /*
+         * Unsubscribe client from channel stream.
+         * Stops channel when there is no remaining client
+         */
         killClient: function(chan_id, handle) {
                 var stream = this.findChan(chan_id);
 
@@ -114,6 +108,23 @@ streams = {
                 if (!stream.clients.length)
                         this.killChan(chan_id);
         },
+
+        /* internal routines */
+        findChan: function(id) {
+                found = this.current.findIndex(function (el) {
+                        if (el.id == id)
+                                return true;
+                        return false;
+                });
+
+                if (found == -1)
+                        return undefined;
+                else return { idx: found, obj: this.current[found] };
+        },
+
+        hasChan: function(id) {
+                return (this.findChan(id) != undefined);
+        }
 };
 
 var app = express();
@@ -123,6 +134,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/list', function(req, res) {
+        /* list available channels */
         res.send({ channels: Object.keys(channels) });
 });
 
@@ -145,6 +157,7 @@ app.get('/status', function(req, res){
                 return username;
         }
 
+        /* reply with some useful info / statistics */
         res.send({
                 streams: streams.current.map(function(el) {
                         return { id: el.id,
@@ -170,6 +183,7 @@ app.get('/stream/:chan', function(req, res) {
         /* the express response is an instance of HttpServerResponse as well */
         var stream_res = res;
 
+        /* check channel existence */
         if (!channels[chan]) {
                 console.log("PROXY: channel " + chan + " not found");
 
@@ -177,6 +191,7 @@ app.get('/stream/:chan', function(req, res) {
                 return;
         }
 
+        /* subscribe already started channel stream */
         if (streams.hasChan(chan)) {
                 console.log("STREAM: channel " + chan + " already subscribed");
 
@@ -187,7 +202,7 @@ app.get('/stream/:chan', function(req, res) {
                 return;
         }
 
-        console.log("START !!");
+        /* channel not streaming yet, fire a new session */
         channels[chan].start(function(stream) {
                 console.log("STREAM: " + stream);
 
@@ -204,6 +219,7 @@ app.get('/stream/:chan', function(req, res) {
                         addHTTPChan(chan, this);
                         streams.addClient(chan, stream_res);
 
+                        /* cleanup routines when the source stream completes / errors out */
                         res.on('end', function() {
                                 console.log("KILL " + chan + " stream done");
                                 streams.killChan(chan);
