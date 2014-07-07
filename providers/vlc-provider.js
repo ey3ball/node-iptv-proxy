@@ -72,7 +72,7 @@ function vlc_declare_channel(channel) {
                         if (!this.cur_host) {
                                 play_cb(undefined);
                         } else {
-                                console.log("got host : " + this.cur_host.host);
+                                console.log("got host : " + this.cur_host.host.control_url);
 
                                 vlc_play(this.cur_host.host, channel, play_cb);
                         }

@@ -21,11 +21,18 @@ streams = {
          *
          * Channels are held in the "current" array for later
          * reference
+         *
+         * id: identifier (eg: channel name)
+         * stream: readable data stream
+         * head: http headers (including content-type)
+         * stop: callback stop function, trigerred when all clients
+         *       have disconnected
          */
-        addChan: function (id, handle, head) {
+        addChan: function (id, readableStream, head, stop) {
                 this.current.push({
                         "id": id,
-                        "handle": handle,
+                        "inputStream": readableStream,
+                        "stop": stop,
                         "headers": head,
                         "clients": []
                 });
@@ -50,12 +57,14 @@ streams = {
         killChan: function(id) {
                 console.log("KILLCHAN: " + id);
 
-                stream = this.findChan(id);
-
-                if (!stream)
+                try {
+                        stream = this.findChan(id).obj;
+                } catch(e) {
                         return;
+                }
 
-                stream.obj.handle.abort();
+                if (stream.stop)
+                        stream.stop();
 
                 channels[id].stop();
 
@@ -63,12 +72,15 @@ streams = {
         },
 
         addClient: function(chan_id, client_handle) {
-                stream = this.findChan(chan_id).obj;
-
-                if (!stream)
+                try {
+                        stream = this.findChan(chan_id).obj;
+                } catch(e) {
                         return;
+                }
 
                 var idx = stream.clients.push(client_handle);
+
+                stream.inputStream.pipe(client_handle);
 
                 client_handle.on('close', function() {
                         console.log("CLOSE: " + chan_id + " " + idx);
@@ -102,19 +114,6 @@ streams = {
                 if (!stream.clients.length)
                         this.killChan(chan_id);
         },
-
-        sendData: function(id, chunk) {
-                stream = this.findChan(id);
-
-                if (!stream) {
-                        console.log("DATA: stream not found");
-                        return;
-                }
-
-                stream.obj.clients.map(function(el) {
-                        el.write(chunk, 'binary');
-                });
-        }
 };
 
 var app = express();
@@ -161,6 +160,11 @@ app.get('/status', function(req, res){
 });
 
 app.get('/stream/:chan', function(req, res) {
+        function addHTTPChan(id, http_req) {
+                streams.addChan(id, http_req.res, http_req.res.headers,
+                                function() { http_req.abort() });
+        }
+
         var chan = req.params.chan;
 
         /* the express response is an instance of HttpServerResponse as well */
@@ -197,16 +201,12 @@ app.get('/stream/:chan', function(req, res) {
 
                         stream_res.writeHead(200, res.headers);
 
-                        streams.addChan(chan, this, res.headers);
+                        addHTTPChan(chan, this);
                         streams.addClient(chan, stream_res);
 
                         res.on('end', function() {
                                 console.log("KILL " + chan + " stream done");
                                 streams.killChan(chan);
-                        });
-
-                        res.on('data', function(chunk) {
-                                streams.sendData(chan, chunk);
                         });
 
 			res.on('error', function(e) {
@@ -226,8 +226,6 @@ app.get('/stream/:chan', function(req, res) {
 
                 req.end();
         });
-
-
 });
 
 app.listen(1234);
