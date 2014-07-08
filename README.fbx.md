@@ -43,7 +43,7 @@ var vlc_pool = [ vlc1, vlc2 ];
 
 var multichan_config = {
         "france2hd": vlc.chan("2 - France 2 (HD)").pool(vlc_pool),
-	"france3hd": vlc.chan("3 - France 3 (HD)").pool(vlc_pool)
+        "france3hd": vlc.chan("3 - France 3 (HD)").pool(vlc_pool)
 };
 
 module.exports = multichan_config;
