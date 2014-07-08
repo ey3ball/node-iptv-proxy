@@ -78,73 +78,61 @@ app.get('/status', function(req, res){
 
 app.get('/transcode/:chan', function(req, res) {
         var chan = req.params.chan;
-        var fakeClient = through();
-        var transcodedChan = through();
 
         console.log("TRANSCODE: " + chan);
 
-        changlue.fire(chan, function(httpStream) {
-                /* ok_cb */
-                res.writeHead(200, httpStream.headers);
-
-                /* register fake client */
-                streams.addClient(chan, fakeClient);
-
-                new ffmpeg({ source: fakeClient })
-                        .withVideoCodec('libx264')
-                        .withAudioCodec('libmp3lame')
-                        .withSize('320x240')
-                        .fromFormat('mpegts')
-                        .toFormat('mpegts')
-                        .writeToStream(transcodedChan, { end: true });
-
-                /* cleanup routines when the source stream completes / errors out */
-                transcodedChan.on('end', function() {
-                        console.log("END: trans-" + chan + " stream done");
-                        streams.killChan("trans-" + chan);
-                });
-
-                /* register transcoding channel and attach actual client to it */
-                streams.addChan("trans-" + chan, transcodedChan, httpStream.headers,
-                                function() { fakeClient.destroy() });
+        /* check wether the channel is already being transcoded*/
+        changlue.try_chan("trans-" + chan, function(stream) {
+                res.set(stream.headers);
                 streams.addClient("trans-" + chan, res);
         }, function() {
-                res.send(503, "Failed to start stream");
+                /* if not, grab the corresponding (uncompressed) source stream
+                 * and fire up ffmpeg */
+                changlue.get_chan(chan, function(sourceStream) {
+                        var fakeClient = through();
+                        var transcodedChan = through();
+
+                        res.writeHead(200, sourceStream.headers);
+
+                        /* register fake (internal) client on source stream */
+                        streams.addClient(chan, fakeClient);
+
+                        /* start encoding */
+                        new ffmpeg({ source: fakeClient })
+                                .withVideoCodec('libx264')
+                                .withAudioCodec('libmp3lame')
+                                .withSize('320x240')
+                                .fromFormat('mpegts')
+                                .toFormat('mpegts')
+                                .writeToStream(transcodedChan, { end: true });
+
+                        /* cleanup routines when the source stream completes / errors out */
+                        transcodedChan.on('end', function() {
+                                console.log("END: trans-" + chan + " stream done");
+                                streams.killChan("trans-" + chan);
+                        });
+
+                        /* register new transcoding channel and attach actual client to it */
+                        streams.addChan("trans-" + chan, transcodedChan, sourceStream.headers,
+                                        function() { fakeClient.destroy() });
+                        streams.addClient("trans-" + chan, res);
+                }, function() {
+                        res.send(503, "Failed to start stream");
+                });
         });
 });
 
 app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
-        /* the express response is an instance of HttpServerResponse as well */
-        var stream_res = res;
-
-        /* check channel existence */
-        if (!channels[chan]) {
-                console.log("PROXY: channel " + chan + " not found");
-
-                res.send(404, "not found");
-                return;
-        }
-
-        /* subscribe already started channel stream */
-        if (streams.hasChan(chan)) {
-                console.log("STREAM: channel " + chan + " already subscribed");
-
-                var stream = streams.findChan(chan);
-                res.set(stream.obj.headers);
-                streams.addClient(chan, stream_res);
-
-                return;
-        }
-
-        changlue.fire(chan, function(httpStream) {
-                /* ok_cb */
-                stream_res.writeHead(200, httpStream.headers);
-                streams.addClient(chan, stream_res);
-        }, function() {
-                /* err_cb */
-                res.send(503, "Failed to start stream");
+        changlue.get_chan(chan, function(stream) {
+                res.set(stream.headers);
+                streams.addClient(chan, res);
+        }, function(err) {
+                if (err == "NotFound")
+                        res.send(404, "not found");
+                else
+                        res.send(503, "Failed to start stream");
         });
 });
 
