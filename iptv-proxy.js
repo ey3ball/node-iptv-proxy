@@ -4,6 +4,7 @@ url     = require('url');
 express = require('express');
 git     = require('git-rev');
 through = require('through');
+ffmpeg  = require('fluent-ffmpeg');
 require('array.prototype.findindex');
 
 /* internal deps */
@@ -132,6 +133,7 @@ app.get('/status', function(req, res){
 app.get('/transcode/:chan', function(req, res) {
         var chan = req.params.chan;
         var fakeClient = through();
+        var transcodedChan = through();
 
         console.log("TRANSCODE: " + chan);
 
@@ -142,8 +144,22 @@ app.get('/transcode/:chan', function(req, res) {
                 /* register fake client */
                 streams.addClient(chan, fakeClient);
 
+                new ffmpeg({ source: fakeClient })
+                        .withVideoCodec('libx264')
+                        .withAudioCodec('libmp3lame')
+                        .withSize('320x240')
+                        .fromFormat('mpegts')
+                        .toFormat('mpegts')
+                        .writeToStream(transcodedChan, { end: true });
+
+                /* cleanup routines when the source stream completes / errors out */
+                transcodedChan.on('end', function() {
+                        console.log("END: trans-" + chan + " stream done");
+                        streams.killChan("trans-" + chan);
+                });
+
                 /* register transcoding channel and attach actual client to it */
-                streams.addChan("trans-" + chan, fakeClient, httpStream.headers,
+                streams.addChan("trans-" + chan, transcodedChan, httpStream.headers,
                                 function() { fakeClient.destroy() });
                 streams.addClient("trans-" + chan, res);
         }, function() {
