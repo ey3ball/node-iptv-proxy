@@ -3,6 +3,7 @@ http    = require('http');
 url     = require('url');
 express = require('express');
 git     = require('git-rev');
+through = require('through');
 require('array.prototype.findindex');
 
 /* internal deps */
@@ -97,18 +98,56 @@ app.get('/status', function(req, res){
                 return username;
         }
 
+        function get_http_stats(client) {
+                try {
+                        return {
+                                sent: client.socket.bytesWritten,
+                                remoteAddr: client.req.headers['x-forwarded-for']
+                                            || client.req.connection.remoteAddress,
+                                remotePort: client.socket.remotePort,
+                                username: decode_authdata(client.req.headers)
+                        };
+                } catch(e) {
+                        return {
+                                sent: 0,
+                                remoteAddr: "127.0.0.1",
+                                remotePort: 0,
+                                username: "internal"
+                        };
+                }
+        }
+
         /* reply with some useful info / statistics */
         res.send({
                 streams: streams.current.map(function(el) {
                         return { id: el.id,
                                 clients: el.clients.map(function(el) {
-                                        return { sent: el.socket.bytesWritten,
-                                                 remoteAddr: el.req.headers['x-forwarded-for'] || el.req.connection.remoteAddress,
-                                                 remotePort: el.socket.remotePort,
-                                                 username: decode_authdata(el.req.headers)
-                                        };
-                                }) };
+                                        return get_http_stats(el);
+                                })
+                        };
                 })
+        });
+});
+
+app.get('/transcode/:chan', function(req, res) {
+        var chan = req.params.chan;
+        var fakeClient = through();
+
+        console.log("TRANSCODE: " + chan);
+
+        fire(chan, function(httpStream) {
+                /* ok_cb */
+                res.writeHead(200, httpStream.headers);
+
+                /* register fake client */
+                streams.addClient(chan, fakeClient);
+
+                /* register transcoding channel and attach actual client to it */
+                streams.addChan("trans-" + chan, fakeClient, httpStream.headers,
+                                function() { fakeClient.destroy() });
+                streams.addClient("trans-" + chan, res);
+        }, function() {
+                res.send(503, "Failed to start stream");
         });
 });
 
