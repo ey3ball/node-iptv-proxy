@@ -89,13 +89,24 @@ app.get('/transcode/:chan', function(req, res) {
                 /* if not, grab the corresponding (uncompressed) source stream
                  * and fire up ffmpeg */
                 changlue.get_chan(chan, function(sourceStream) {
-                        var fakeClient = new (stream.PassThrough)();
+                        var fakeClient = new (stream.PassThrough)({allowHalfOpen: false});
                         var transcodedChan = new (stream.PassThrough)();
 
                         res.writeHead(200, sourceStream.headers);
 
                         /* register fake (internal) client on source stream */
                         streams.addClient(chan, fakeClient);
+
+                        /* register new transcoding channel and attach actual client to it */
+                        streams.addChan("trans-" + chan, transcodedChan, sourceStream.headers,
+                                        function() {
+                                                fakeClient.end();
+
+                                                /* FIXME: hackish, for some reason end
+                                                 *  doesn't always trigger this */
+                                                streams.killClient(chan, fakeClient);
+                                        });
+                        streams.addClient("trans-" + chan, res);
 
                         /* start encoding */
                         new ffmpeg({ source: fakeClient })
@@ -104,18 +115,7 @@ app.get('/transcode/:chan', function(req, res) {
                                 .withSize('320x240')
                                 .fromFormat('mpegts')
                                 .toFormat('mpegts')
-                                .writeToStream(transcodedChan, { end: true });
-
-                        /* cleanup routines when the source stream completes / errors out */
-                        transcodedChan.on('end', function() {
-                                console.log("END: trans-" + chan + " stream done");
-                                streams.killChan("trans-" + chan);
-                        });
-
-                        /* register new transcoding channel and attach actual client to it */
-                        streams.addChan("trans-" + chan, transcodedChan, sourceStream.headers,
-                                        function() { fakeClient.end() });
-                        streams.addClient("trans-" + chan, res);
+                                .writeToStream(transcodedChan);
                 }, function() {
                         res.send(503, "Failed to start stream");
                 });
