@@ -82,8 +82,8 @@ app.get('/transcode/:chan', function(req, res) {
         console.log("TRANSCODE: " + chan);
 
         /* check wether the channel is already being transcoded*/
-        changlue.try_chan("trans-" + chan, function(stream) {
-                res.set(stream.headers);
+        changlue.try_chan("trans-" + chan, function(liveStream) {
+                res.set(liveStream.headers);
                 streams.addClient("trans-" + chan, res);
         }, function() {
                 /* if not, grab the corresponding (uncompressed) source stream
@@ -125,8 +125,8 @@ app.get('/transcode/:chan', function(req, res) {
 app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
-        changlue.get_chan(chan, function(stream) {
-                res.set(stream.headers);
+        changlue.get_chan(chan, function(liveStream) {
+                res.set(liveStream.headers);
                 streams.addClient(chan, res);
         }, function(err) {
                 if (err == "NotFound")
