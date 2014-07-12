@@ -1,9 +1,9 @@
 /* npm deps */
+stream  = require('stream');
 http    = require('http');
 url     = require('url');
 express = require('express');
 git     = require('git-rev');
-through = require('through');
 ffmpeg  = require('fluent-ffmpeg');
 require('array.prototype.findindex');
 
@@ -89,8 +89,8 @@ app.get('/transcode/:chan', function(req, res) {
                 /* if not, grab the corresponding (uncompressed) source stream
                  * and fire up ffmpeg */
                 changlue.get_chan(chan, function(sourceStream) {
-                        var fakeClient = through();
-                        var transcodedChan = through();
+                        var fakeClient = new (stream.PassThrough)();
+                        var transcodedChan = new (stream.PassThrough)();
 
                         res.writeHead(200, sourceStream.headers);
 
@@ -114,7 +114,7 @@ app.get('/transcode/:chan', function(req, res) {
 
                         /* register new transcoding channel and attach actual client to it */
                         streams.addChan("trans-" + chan, transcodedChan, sourceStream.headers,
-                                        function() { fakeClient.destroy() });
+                                        function() { fakeClient.end() });
                         streams.addClient("trans-" + chan, res);
                 }, function() {
                         res.send(503, "Failed to start stream");
