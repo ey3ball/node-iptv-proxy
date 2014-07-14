@@ -39,7 +39,7 @@ var config_channels = {
         "fr5_hd": vlc.chan("FBX: France 5 (HD)").pool(vlc_pool),
         "tf1hd": streamdev.chan("TF1 HD", stm_host),
         "m6hd": streamdev.chan("M6 HD", stm_host),
-        "fr2_hd_loop": simple.chan("http://localhost:1234/stream/fr2_hd"),
+        "fr2_hd_loop": simple.chan(loop_url),
 };
 
 /* basic config example */
