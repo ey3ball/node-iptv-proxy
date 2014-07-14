@@ -23,7 +23,7 @@ var vlc_pool = [ vlc1, vlc2 ];
  */
 var stm_host = "http://localhost:3000"
 
-var config = {
+var config_channels = {
         "fr2_hd": vlc.chan("FBX: France 2 HD (TNT)").pool(vlc_pool),
         "fr4_hd": vlc.chan("FBX: France 4 (HD)").pool(vlc_pool),
         "fr5_hd": vlc.chan("FBX: France 5 (HD)").pool(vlc_pool),
@@ -32,4 +32,9 @@ var config = {
 };
 
 /* use basic config example */
-module.exports = config;
+module.exports = {
+        server: {
+                port: 1234
+        },
+        channels: config_channels,
+};

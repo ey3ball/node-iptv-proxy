@@ -8,7 +8,7 @@ ffmpeg  = require('fluent-ffmpeg');
 require('array.prototype.findindex');
 
 /* internal deps */
-channels = require('./channels_config');
+config = require('./channels_config');
 streams = require('./lib/stream-manager');
 changlue = require('./lib/channels-glue');
 
@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
 
 app.get('/list', function(req, res) {
         /* list available channels */
-        res.send({ channels: Object.keys(channels) });
+        res.send({ channels: Object.keys(config.channels) });
 });
 
 app.get('/version', function(req, res) {
@@ -136,4 +136,4 @@ app.get('/stream/:chan', function(req, res) {
         });
 });
 
-app.listen(1234);
+app.listen(config.server.port);
