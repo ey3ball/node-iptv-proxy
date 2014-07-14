@@ -26,6 +26,20 @@ app.get('/list', function(req, res) {
         res.send({ channels: Object.keys(config.channels) });
 });
 
+app.get('/playlist', function(req, res) {
+        var playlist = "";
+
+        res.header("Content-Type", "audio/x-mpegurl");
+
+        playlist += '#EXTM3U\r\n';
+        Object.keys(config.channels).map(function(val) {
+                playlist += '#EXTINF:-1 tvg-name="' + val + '",' + val + '\r\n';
+                playlist += 'http://' + req.headers['host'] + '/stream/' + val+ '\r\n';
+        });
+
+        res.send(playlist);
+});
+
 app.get('/version', function(req, res) {
         git.short(function(commit) {
                 res.send({ version: commit });
