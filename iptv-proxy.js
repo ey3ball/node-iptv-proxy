@@ -76,15 +76,26 @@ app.get('/status', function(req, res){
         });
 });
 
-app.get('/transcode/:chan', function(req, res) {
-        var chan = req.params.chan;
+app.get('/transcode/:chan/:profile?', function(req, res) {
+        if (!config.transcode) {
+                res.send(404, "Transcoding not enabled");
+                return;
+        }
 
-        console.log("TRANSCODE: " + chan);
+        var chan = req.params.chan;
+        var profile = req.params.profile || config.transcode["default"];
+
+        if (!config.transcode[profile]) {
+                res.send(404, "Invalid profile");
+                return;
+        }
+
+        console.log("TRANSCODE: " + chan + " " + profile);
 
         /* check wether the channel is already being transcoded*/
-        changlue.try_chan("trans-" + chan, function(liveStream) {
+        changlue.try_chan("trans-" + profile + "-" + chan, function(liveStream) {
                 res.set(liveStream.headers);
-                streams.addClient("trans-" + chan, res);
+                streams.addClient("trans-" + profile + "-" + chan, res);
         }, function() {
                 /* if not, grab the corresponding (uncompressed) source stream
                  * and fire up ffmpeg */
@@ -98,7 +109,8 @@ app.get('/transcode/:chan', function(req, res) {
                         streams.addClient(chan, fakeClient);
 
                         /* register new transcoding channel and attach actual client to it */
-                        streams.addChan("trans-" + chan, transcodedChan, sourceStream.headers,
+                        streams.addChan("trans-" + profile + "-" + chan,
+                                        transcodedChan, sourceStream.headers,
                                         function() {
                                                 fakeClient.end();
 
@@ -106,13 +118,10 @@ app.get('/transcode/:chan', function(req, res) {
                                                  *  doesn't always trigger this */
                                                 streams.killClient(chan, fakeClient);
                                         });
-                        streams.addClient("trans-" + chan, res);
+                        streams.addClient("trans-" + profile + "-" + chan, res);
 
                         /* start encoding */
-                        new ffmpeg({ source: fakeClient })
-                                .withVideoCodec('libx264')
-                                .withAudioCodec('libmp3lame')
-                                .withSize('320x240')
+                        config.transcode[profile](new ffmpeg({ source: fakeClient }))
                                 .fromFormat('mpegts')
                                 .toFormat('mpegts')
                                 .writeToStream(transcodedChan);
