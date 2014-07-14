@@ -99,7 +99,7 @@ app.get('/transcode/:chan/:profile?', function(req, res) {
         var chan = req.params.chan;
         var profile = req.params.profile || config.transcode["default"];
 
-        if (!config.transcode[profile]) {
+        if (profile == "disable" || !config.transcode[profile]) {
                 res.send(404, "Invalid profile");
                 return;
         }

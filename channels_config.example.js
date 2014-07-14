@@ -1,6 +1,7 @@
 vlc = require('./providers/vlc-provider');
 streamdev = require('./providers/streamdev-provider');
 simple = require('./providers/simple-http-provider');
+default_profiles = require('./lib/transcoding-profiles.js');
 
 /*
  * Two VLC instances are started, enabling the playback of two
@@ -41,10 +42,26 @@ var config_channels = {
         "fr2_hd_loop": simple.chan("http://localhost:1234/stream/fr2_hd"),
 };
 
-/* use basic config example */
+/* basic config example */
 module.exports = {
+        /* define listening port */
         server: {
                 port: 1234
         },
+
+        /* attach channel list */
         channels: config_channels,
+
+        /* enable transcoding with default profiles
+         * we ship 3 default profiles :
+         *      - low: 200k, 320xY
+         *      - medium: 600k, 576xY
+         *      - high: 900k, 720xY
+         *
+         * Use .disable('profile-name') if you want to load the default profile
+         * list but wish to disable some variants
+         *
+         * see ./lib/transcoding-profiles.js if you need custom profiles
+         */
+        transcode: default_profiles.disable("high"),
 };
