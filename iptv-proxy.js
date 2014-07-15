@@ -138,6 +138,12 @@ app.get('/transcode/:chan/:profile?', function(req, res) {
                         config.transcode[profile](new ffmpeg({ source: fakeClient }))
                                 .fromFormat('mpegts')
                                 .toFormat('mpegts')
+                                .on('error', function (e) {
+                                        console.log("FFMPEG_ERRROR: " + e.message);
+
+                                        res.end();
+                                        streams.killChan("trans-" + profile + "-" + chan);
+                                })
                                 .writeToStream(transcodedChan);
                 }, function() {
                         res.send(503, "Failed to start stream");
