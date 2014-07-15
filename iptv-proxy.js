@@ -17,13 +17,15 @@ changlue = require('./lib/channels-glue');
  */
 var app = express();
 
+app.set('json spaces', 2);
+
 app.get('/', function (req, res) {
         res.send("node-iptv-proxy");
 });
 
 app.get('/list', function(req, res) {
         /* list available channels */
-        res.send({ channels: Object.keys(config.channels) });
+        res.json({ channels: Object.keys(config.channels) });
 });
 
 app.get('/playlist', function(req, res) {
@@ -42,7 +44,7 @@ app.get('/playlist', function(req, res) {
 
 app.get('/version', function(req, res) {
         git.short(function(commit) {
-                res.send({ version: commit });
+                res.json({ version: commit });
         });
 });
 
@@ -79,7 +81,7 @@ app.get('/status', function(req, res){
         }
 
         /* reply with some useful info / statistics */
-        res.send({
+        res.json({
                 streams: streams.current.map(function(el) {
                         return { id: el.id,
                                 clients: el.clients.map(function(el) {
