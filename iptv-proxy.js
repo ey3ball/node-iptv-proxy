@@ -11,6 +11,7 @@ require('array.prototype.findindex');
 config = require('./channels_config');
 streams = require('./lib/stream-manager');
 changlue = require('./lib/channels-glue');
+httpu = require('./lib/http-utils');
 
 /*
  * express webapp: expose a number of endpoints and APIs
@@ -48,48 +49,50 @@ app.get('/version', function(req, res) {
         });
 });
 
-app.get('/status', function(req, res){
-        function decode_authdata(headers) {
-                var username = "";
-                try {
-                        username = new Buffer(headers['authorization'].replace("Basic ",""), 'base64')
-                                .toString().split(':')[0];
-                } catch(e) {
-                        username = "none";
-                }
-
-                return username;
-        }
-
-        function get_http_stats(client) {
-                try {
-                        return {
-                                sent: client.socket.bytesWritten,
-                                remoteAddr: client.req.headers['x-forwarded-for']
-                                            || client.req.connection.remoteAddress,
-                                remotePort: client.socket.remotePort,
-                                username: decode_authdata(client.req.headers)
-                        };
-                } catch(e) {
-                        return {
-                                sent: 0,
-                                remoteAddr: "127.0.0.1",
-                                remotePort: 0,
-                                username: "internal"
-                        };
-                }
-        }
+app.get('/admin/stats/debug', function(req, res) {
 
         /* reply with some useful info / statistics */
         res.json({
                 streams: streams.current.map(function(el) {
                         return { id: el.id,
-                                clients: el.clients.map(function(el) {
-                                        return get_http_stats(el);
+                                 clients: el.clients.map(function(el) {
+                                        return httpu.get_stream_stats(el);
                                 })
                         };
                 })
         });
+});
+
+app.get('/admin/stats/clients', function(req, res) {
+        var stats = [];
+
+        function gen_stats(e) {
+                return e.clients.map(function(el) {
+                        var info = {};
+
+                        if (el.client_type != 'http-sink')
+                                return;
+
+                        var transcode_info = new RegExp("trans-([^-]*)-(.*)").exec(e.id);
+
+                        info.uuid = el.uuid;
+                        if (transcode_info) {
+                                info.chan = transcode_info[2];
+                                info.type = "transcoded";
+                                info.profile = transcode_info[1];
+                        } else {
+                                info.chan = e.id;
+                                info.type = "direct";
+                        }
+
+                        info.http = httpu.get_stream_stats(el);
+
+                        stats.push(info);
+                });
+        }
+
+        streams.current.map(gen_stats);
+        res.send(stats);
 });
 
 app.get('/transcode/:chan/:profile?', function(req, res) {
@@ -111,7 +114,7 @@ app.get('/transcode/:chan/:profile?', function(req, res) {
         /* check wether the channel is already being transcoded*/
         changlue.try_chan("trans-" + profile + "-" + chan, function(liveStream) {
                 res.set(liveStream.headers);
-                streams.addClient("trans-" + profile + "-" + chan, res);
+                streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
         }, function() {
                 /* if not, grab the corresponding (uncompressed) source stream
                  * and fire up ffmpeg */
@@ -122,7 +125,7 @@ app.get('/transcode/:chan/:profile?', function(req, res) {
                         res.writeHead(200, sourceStream.headers);
 
                         /* register fake (internal) client on source stream */
-                        streams.addClient(chan, fakeClient);
+                        streams.addClient(chan, fakeClient, "transcode-" + profile);
 
                         /* register new transcoding channel and attach actual client to it */
                         streams.addChan("trans-" + profile + "-" + chan,
@@ -134,7 +137,7 @@ app.get('/transcode/:chan/:profile?', function(req, res) {
                                                  *  doesn't always trigger this */
                                                 streams.killClient(chan, fakeClient);
                                         });
-                        streams.addClient("trans-" + profile + "-" + chan, res);
+                        streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
 
                         /* start encoding */
                         config.transcode[profile](new ffmpeg({ source: fakeClient }))
@@ -158,7 +161,7 @@ app.get('/stream/:chan', function(req, res) {
 
         changlue.get_chan(chan, function(liveStream) {
                 res.set(liveStream.headers);
-                streams.addClient(chan, res);
+                streams.addClient(chan, res, "http-sink");
         }, function(err) {
                 if (err == "NotFound")
                         res.send(404, "not found");
