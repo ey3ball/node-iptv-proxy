@@ -96,6 +96,36 @@ app.get('/admin/stats/clients', function(req, res) {
         res.send(stats);
 });
 
+app.delete('/admin/client/:uuid', function(req, res) {
+        var found = null;
+
+        streams.current.map(function(e) {
+                e.clients.map(function(el) {
+                        if (el.uuid != req.params.uuid)
+                                return;
+
+                        done = true;
+                        found = { chan: e.id, handle: el };
+                });
+        });
+
+        if (!found) {
+                res.send(404);
+        } else {
+                streams.killClient(found.chan, found.handle);
+
+                res.send(200);
+        }
+});
+
+app.delete('/admin/chan/:chan', function(req, res) {
+        if (!streams.hasChan(req.params.chan))
+                res.send(404);
+
+        streams.killChan(req.params.chan);
+        res.send(200);
+});
+
 app.get('/transcode/:chan/:profile?', function(req, res) {
         if (!config.transcode) {
                 res.send(404, "Transcoding not enabled");
