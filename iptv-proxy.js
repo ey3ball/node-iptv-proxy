@@ -104,7 +104,6 @@ app.delete('/admin/client/:uuid', function(req, res) {
                         if (el.uuid != req.params.uuid)
                                 return;
 
-                        done = true;
                         found = { chan: e.id, handle: el };
                 });
         });
