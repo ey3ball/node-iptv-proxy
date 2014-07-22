@@ -86,6 +86,7 @@ app.get('/admin/stats/clients', function(req, res) {
                         }
 
                         info.http = httpu.get_stream_stats(el);
+                        info.uptime = Math.round((Date.now() - el.client_added) / 1000);
 
                         stats.push(info);
                 });
