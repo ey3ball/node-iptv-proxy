@@ -1,0 +1,23 @@
+{
+        "name": "iptv-proxy",
+        "version": "0.9.1",
+        "repository": {
+                "type": "git",
+                "url": "https://github.com/ey3ball/node-iptv-proxy"
+        },
+        "description": "A simple, eventually transcoding, proxy for live IPTV streams",
+        "author": "Florian Vallee (ey3ball)",
+        "dependencies": {
+                "express": ">= 4.x",
+                "git-rev": "0.2.1",
+                "fluent-ffmpeg": "~1.7",
+                "array.prototype.findindex": ">= 0.1",
+                "array.prototype.find": ">= 0.1",
+                "ringbufferjs": "0.0.1",
+                "libxmljs": ">= 0.11.0",
+                "node-uuid": ">= 1.4.0"
+        },
+        "bin": {
+                "node-iptv-proxy": "iptv-proxy.js"
+        }
+}

@@ -2,10 +2,11 @@
 
 global.__base = __dirname + '/';
 
-/* npm deps */
 stream  = require('stream');
 http    = require('http');
 url     = require('url');
+
+/* npm deps */
 express = require('express');
 git     = require('git-rev');
 ffmpeg  = require('fluent-ffmpeg');
