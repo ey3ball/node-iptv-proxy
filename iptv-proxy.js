@@ -63,10 +63,10 @@ app.get('/admin/stats/debug', function(req, res) {
         });
 });
 
-app.get('/admin/stats/clients', function(req, res) {
+function get_client_stats() {
         var stats = [];
 
-        function gen_stats(e) {
+        function gen_client_stats(e) {
                 return e.clients.map(function(el) {
                         var info = {};
 
@@ -92,8 +92,13 @@ app.get('/admin/stats/clients', function(req, res) {
                 });
         }
 
-        streams.current.map(gen_stats);
-        res.json(stats);
+        streams.current.map(gen_client_stats);
+
+        return stats;
+}
+
+app.get('/admin/stats/clients', function(req, res) {
+        res.json(get_client_stats());
 });
 
 app.delete('/admin/client/:uuid', function(req, res) {
@@ -114,6 +119,18 @@ app.delete('/admin/client/:uuid', function(req, res) {
                 streams.killClient(found.chan, found.handle);
 
                 res.send(200);
+        }
+});
+
+app.get('/admin/client/:uuid', function(req, res) {
+        var stat = get_client_stats().filter(function(el) {
+                return (el.uuid == req.params.uuid);
+        }).pop();
+
+        if (!stat) {
+                res.send(404);
+        } else {
+                res.json(stat);
         }
 });
 
