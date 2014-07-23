@@ -93,7 +93,7 @@ app.get('/admin/stats/clients', function(req, res) {
         }
 
         streams.current.map(gen_stats);
-        res.send(stats);
+        res.json(stats);
 });
 
 app.delete('/admin/client/:uuid', function(req, res) {
