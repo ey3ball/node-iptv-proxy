@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+global.__base = __dirname + '/';
+
 /* npm deps */
 stream  = require('stream');
 http    = require('http');
@@ -7,14 +11,75 @@ git     = require('git-rev');
 ffmpeg  = require('fluent-ffmpeg');
 require('array.prototype.findindex');
 
-/* internal deps */
-config = require('./channels_config');
-streams = require('./lib/stream-manager');
-changlue = require('./lib/channels-glue');
-httpu = require('./lib/http-utils');
+/*
+ * Process command line options, and load config file
+ */
+var binname = process.argv.shift();
+
+if ((binname == 'node') || (binname == 'nodejs'))
+        binname += ' ' + process.argv.shift();
+
+var conf_file = undefined;
+var port = undefined;
+
+function usage(err) {
+        console.log("Usage: " + binname + " [opts]");
+        console.log("");
+        console.log("   -h | --help             prints this help");
+        console.log("   -c | --config <file>    load config from <file>");
+        console.log("   -p | --port <number>    override listening port");
+        console.log("");
+
+        if (err) {
+                console.log(err);
+                console.log();
+        }
+
+        process.exit(0);
+}
+
+while ((opt = process.argv.shift()) != undefined) {
+        switch (opt) {
+        case '-h':
+        case '--help':
+                usage();
+
+        case '-c':
+        case '--config':
+                conf_file = process.argv.shift();
+                break;
+
+        case '-p':
+        case '--port':
+                port = process.argv.shift();
+                break;
+
+        default:
+                usage("Unrecognized option " + opt);
+        }
+}
 
 /*
- * express webapp: expose a number of endpoints and APIs
+ * Load config
+ */
+if (!conf_file)
+        usage("No config file selected");
+
+config = require(require('fs').realpathSync(conf_file));
+
+if (port)
+        config.server.port = port;
+
+/*
+ * Load internal dependencies
+ */
+streams = require(__base + 'lib/stream-manager');
+changlue = require(__base + 'lib/channels-glue');
+httpu = require(__base + 'lib/http-utils');
+
+/*
+ * Setup and launch express webapp
+ * Expose a number of endpoints and APIs
  */
 var app = express();
 

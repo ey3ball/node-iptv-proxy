@@ -1,7 +1,7 @@
-vlc = require('./providers/vlc-provider');
-streamdev = require('./providers/streamdev-provider');
-simple = require('./providers/simple-http-provider');
-default_profiles = require('./lib/transcoding-profiles.js');
+vlc = require(__base + 'providers/vlc-provider');
+streamdev = require(__base + 'providers/streamdev-provider');
+simple = require(__base + 'providers/simple-http-provider');
+default_profiles = require(__base + 'lib/transcoding-profiles');
 
 /*
  * Two VLC instances are started, enabling the playback of two
