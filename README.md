@@ -38,3 +38,7 @@ provider) channels.
 One typical use case is to restream channels offered by your IPTV provider to a
 mobile device outside of your home. For instance to watch sport events while in
 transit ;)
+
+## License
+
+See LICENSE.md
