@@ -208,7 +208,7 @@ app.delete('/admin/chan/:chan', function(req, res) {
         res.send(200);
 });
 
-app.get('/transcode/:chan/:profile?', function(req, res) {
+app.get('/transcode.:profile?/:chan', function(req, res) {
         if (!config.transcode) {
                 res.send(404, "Transcoding not enabled");
                 return;
