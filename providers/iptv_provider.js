@@ -1,40 +1,61 @@
+module.exports = IptvProvider;
+
 streams = require(__base + 'lib/stream-manager');
 
 module.exports = IptvProvider;
 
-function IptvProvider(options) {
-        if (!options)
+function IptvProvider(opts) {
+        if (!opts)
                 return;
 
-        if (options.channel)
-                this.channel = channel;
+        if (opts.channel)
+                this._channel = opts.channel;
 }
 
 IptvProvider.prototype.start = function(ok_cb, err_cb) {
-        if (!this.channel) {
+        var chan = this._channel;
+
+        if (!this._channel) {
                 return err_cb("No channel selected");
         }
 
-        function addHTTPChan(id, http_req) {
+        if (this._started) {
+                throw new Error("InUse");
+        }
+
+        this._started = true;
+
+        /* function addHTTPChan(id, http_req) {
                 streams.addChan(id, http_req.res, http_req.res.headers,
                                 function() {
                                         http_req.abort();
                                         config.channels[chan].stop();
                                 });
-        }
+        } */
 
+        this._get_stream(function (stream) {
+                this._cur_stream = stream;
 
-        this._make_stream(function (stream) {
-                addHTTPChan(this.channel, stream);
-                ok_cb(streams.findChan(chan).obj);
-        }, err_cb);
+                var added = streams.addChan(chan, stream, stream.headers, function() {
+                        this._end_stream(stream);
+                        this.stop();
+                }.bind(this));
+
+                ok_cb(added);
+        }, function(e) {
+                this._started = false;
+                err_cb(e);
+        });
 };
 
 IptvProvider.prototype.stop = function() {
-        if (!this.started)
+        if (!this._started)
                 throw new Error();
 
-        return;
+        this._end_stream(this._cur_stream);
+
+        this._cur_stream = undefined;
+        this._started = false;
 };
 
 IptvProvider.prototype.chan = function (channel) {
@@ -53,7 +74,7 @@ IptvProvider.prototype.bindChan = function(channel) {
          * will be shared between all bound channels.
          */
         function _bound(channel) {
-                this.channel = channel;
+                this._channel = channel;
         }
 
         _bound.prototype = this;
@@ -62,7 +83,7 @@ IptvProvider.prototype.bindChan = function(channel) {
 };
 
 IptvProvider.prototype.toString = function() {
-        return this.channel;
+        return this._channel;
 };
 
 /*
@@ -70,7 +91,7 @@ IptvProvider.prototype.toString = function() {
  *      - _make_stream: create a stream and pass it down to stream_db
  *      - _end_stream: stop a running stream
  */
-IptvProvider.prototype._make_stream = function(stream_cb, err_cb) {
+IptvProvider.prototype._get_stream = function(stream_cb, err_cb) {
         console.log("_make_stream undefined");
 
         throw "Meh";
