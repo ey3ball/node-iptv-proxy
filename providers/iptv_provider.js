@@ -2,7 +2,7 @@ module.exports = IptvProvider;
 
 streams = require(__base + 'lib/stream-manager');
 
-module.exports = IptvProvider;
+IptvProvider.Http = require('./_provider_http');
 
 function IptvProvider(opts) {
         if (!opts)
