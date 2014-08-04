@@ -25,7 +25,7 @@ describe('DummyProvider', function() {
                 var dummy = new DummyProvider();
 
                 it('should trigger err_cb when .chan has not been called', function(done) {
-                        dummy.start(function () { throw "FailTest" }, function () { done() });
+                        dummy.start("fakeid", function () { throw "FailTest" }, function () { done() });
                 });
         });
 });
@@ -33,7 +33,7 @@ describe('DummyProvider', function() {
 describe('UrlProvider', function() {
         describe('#start()', function() {
                 it('should return a stream somehow', function(done) {
-                        (new UrlProvider("http://www.google.fr")).start(function(stream) {
+                        (new UrlProvider("http://www.google.fr")).start("fakeid", function(stream) {
                                 if (!stream)
                                         throw "InvalidStream";
                                 if (!stream.headers)
