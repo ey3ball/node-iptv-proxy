@@ -36,6 +36,8 @@ describe('UrlProvider', function() {
                         (new UrlProvider("http://www.google.fr")).start(function(stream) {
                                 if (!stream)
                                         throw "InvalidStream";
+                                if (!stream.headers)
+                                        throw "InvalidStream2";
 
                                 done();
                         }, function () {

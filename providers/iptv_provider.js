@@ -3,6 +3,7 @@ module.exports = IptvProvider;
 streams = require(__base + 'lib/stream-manager');
 
 IptvProvider.Http = require('./_provider_http');
+IptvProvider.Url = require('./_provider_url');
 
 function IptvProvider(opts) {
         if (!opts)
@@ -10,6 +11,8 @@ function IptvProvider(opts) {
 
         if (opts.channel)
                 this._channel = opts.channel;
+
+        this._started = false;
 }
 
 IptvProvider.prototype.start = function(ok_cb, err_cb) {
@@ -41,11 +44,11 @@ IptvProvider.prototype.start = function(ok_cb, err_cb) {
                         this.stop();
                 }.bind(this));
 
-                ok_cb(added);
-        }, function(e) {
+                ok_cb(added.inputStream);
+        }.bind(this), function(e) {
                 this._started = false;
                 err_cb(e);
-        });
+        }.bind(this));
 };
 
 IptvProvider.prototype.stop = function() {

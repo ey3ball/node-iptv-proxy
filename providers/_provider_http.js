@@ -15,7 +15,7 @@ HttpProvider.prototype._get_stream = function(stream_cb, err_cb) {
                 var req = http.request(url, function(res) {
                         console.log("CHAN_GET: " + url + " " + res.statusCode);
 
-                        stream_cb(this);
+                        stream_cb(res);
                 });
 
                 req.on('error', function(e) {
