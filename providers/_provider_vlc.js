@@ -1,16 +1,26 @@
-http = require('http');
-libxmljs = require('libxmljs');
+var http = require('http');
+var libxmljs = require('libxmljs');
+
 require('array.prototype.find');
 
-var vlc = {};
+module.exports = VlcProvider;
 
-/*
- * VLC channel control helpers (find channel / play / stop)
- */
-function vlc_get_chanid(host, channel, cb) {
+var IptvProvider = require('./iptv_provider');
+
+util.inherits(VlcProvider, IptvProvider.Http);
+
+function VlcProvider(control_url, stream_url, opts) {
+        this._control_url = control_url;
+        this._stream_url = stream_url;
+
+        VlcProvider.super_.call(this, opts);
+}
+
+/* VLC channel control helper: find channe in playlist */
+function vlc_get_chanid(control_url, channel, cb) {
         var xml = "";
 
-        var req = http.request(host.control_url + "/requests/playlist.xml", function (res) {
+        var req = http.request(control_url + "/requests/playlist.xml", function (res) {
                 res.on('data', function(chunk) {
                         xml += chunk;
                 });
@@ -34,107 +44,31 @@ function vlc_get_chanid(host, channel, cb) {
         req.end();
 }
 
-function vlc_play(host, channel, cb) {
-        vlc_get_chanid(host, channel, function(id) {
-                var req = http.request(host.control_url +
+VlcProvider.prototype._get_url = function(url_callback) {
+        var control_url = this._control_url;
+        var stream_url = this._stream_url;
+
+        vlc_get_chanid(control_url, this._channel, function(id) {
+                var req = http.request(control_url +
                                        "/requests/status.xml?command=pl_play&id=" + id,
                                        function(res)
                         {
                                 console.log("PROVIDER: VLC server returned " + res.statusCode);
                                 if (res.statusCode == 200)
-                                        cb(host.stream_url);
+                                        url_callback(stream_url);
+                                else
+                                        url_callback(undefined);
                         });
 
                 req.end();
         });
-}
+};
 
-function vlc_stop(host)
-{
-        var req = http.request(host.control_url + "/requests/status.xml?command=pl_stop", function(res) {
-                console.log("PROVIDER: stopped " + host);
-        });
+
+VlcProvider.prototype._release = function() {
+        var req = http.request(this._control_url + "/requests/status.xml?command=pl_stop", function(res) {
+                console.log("PROVIDER: stopped " + this._control_url);
+        }.bind(this));
 
         req.end();
-}
-
-/*
- * Create channel object
- */
-function vlc_declare_channel(channel) {
-        var vlc_channel = {
-                /* public playback routines : start/stop VLC channel */
-                "start": function(play_cb) {
-                        if (this.cur_host)
-                                throw "Unexpected";
-
-                        this.cur_host = this.getHost();
-                        if (!this.cur_host) {
-                                play_cb(undefined);
-                        } else {
-                                console.log("got host : " + this.cur_host.host.control_url);
-
-                                vlc_play(this.cur_host.host, channel, play_cb);
-                        }
-                },
-                "stop": function() {
-                        vlc_stop(this.cur_host.host);
-
-                        this.cur_host.release();
-                        this.cur_host = undefined;
-                },
-
-                /* load balancing : attach server pool to channel */
-                "pool": function(servers) {
-                        this.servers = servers;
-
-                        /* return this when pool is called to enable chaining
-                         * with vlc.chan in setup file */
-                        return this;
-                },
-
-                /* internal use, find free host in pool */
-                "getHost": function() {
-                        var srv = this.servers.find(function test(el) {
-                                if (el.isAvailable())
-                                        return true;
-                                return false;
-                        });
-
-                        if (srv)
-                                srv.take();
-
-                        return srv;
-                }
-        };
-
-        /* return channel object */
-        return vlc_channel;
-}
-
-/*
- * Create server object
- */
-function vlc_declare_server(host) {
-        var vlc_server = {
-                "host": host,
-                "used": 0,
-                "isAvailable": function () {
-                        return this.used == 0;
-                },
-                "take": function() {
-                        this.used = 1;
-                },
-                "release": function() {
-                        this.used = 0;
-                }
-        };
-
-        return vlc_server;
-}
-
-/* build vlc module */
-vlc.chan = function (channel) { return vlc_declare_channel(channel); };
-vlc.server = function (hosts) { return vlc_declare_server(hosts); };
-
-module.exports = vlc;
+};
