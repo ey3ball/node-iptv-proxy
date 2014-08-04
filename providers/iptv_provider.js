@@ -4,6 +4,7 @@ streams = require(__base + 'lib/stream-manager');
 
 IptvProvider.Http = require('./_provider_http');
 IptvProvider.Url = require('./_provider_url');
+IptvProvider.StreamDev = require('./_provider_streamdev');
 
 function IptvProvider(opts) {
         if (!opts)

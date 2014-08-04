@@ -1,9 +1,22 @@
 http = require('http');
 
-var streamdev = {};
+module.exports = StreamdevProvider;
 
-function streamdev_find_chan(base_url, channel, cb) {
-        var req = http.request(base_url + "/channels.m3u", function(res) {
+var IptvProvider = require('./iptv_provider');
+
+util.inherits(StreamdevProvider, IptvProvider.Http);
+
+function StreamdevProvider(server_url, opts) {
+        this._streamdev_url = server_url;
+
+        StreamdevProvider.super_.call(this, opts);
+}
+
+StreamdevProvider.prototype._get_url = function(url_callback) {
+        var channel = this._channel;
+        var base_url = this._streamdev_url;
+
+        var req = http.request(this._streamdev_url + "/channels.m3u", function(res) {
                 var pl = "";
 
                 res.on('data', function(chunk) {
@@ -23,24 +36,13 @@ function streamdev_find_chan(base_url, channel, cb) {
                                 return prev;
                         }, undefined);
 
-                        cb(res);
+                        url_callback(res);
                 });
         });
 
         req.end();
-}
+};
 
-function streamdev_declare_channel(channel, url) {
-        return {
-                "start": function(play_cb) {
-                        streamdev_find_chan(url, channel, play_cb);
-                },
-                "stop": function() {
-
-                }
-        }
-}
-
-streamdev.chan = streamdev_declare_channel;
-
-module.exports = streamdev;
+StreamdevProvider.prototype._release = function() {
+        return;
+};
