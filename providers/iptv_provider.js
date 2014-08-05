@@ -7,14 +7,26 @@ IptvProvider.Url = require('./_provider_url');
 IptvProvider.StreamDev = require('./_provider_streamdev');
 IptvProvider.Vlc = require('./_provider_vlc');
 
+/*
+ * IptvProvider base class for all iptv stream sources
+ *
+ * opts:
+ *   opts.channel: channel name as set by bindChan(),
+ *     this can be used to bind at initialization time.
+ *
+ * public methods:
+ *   start(id, ok_cb, err_cb): attempt to start channel. Callback with a node
+ *     stream if successfull.
+ *   stop(): stop current stream
+ */
 function IptvProvider(opts) {
+        this._started = false;
+
         if (!opts)
                 return;
 
         if (opts.channel)
                 this._channel = opts.channel;
-
-        this._started = false;
 }
 
 IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
@@ -27,14 +39,6 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
         }
 
         this._started = true;
-
-        /* function addHTTPChan(id, http_req) {
-                streams.addChan(id, http_req.res, http_req.res.headers,
-                                function() {
-                                        http_req.abort();
-                                        config.channels[chan].stop();
-                                });
-        } */
 
         this._get_stream(function (stream) {
                 this._cur_stream = stream;
@@ -70,6 +74,21 @@ IptvProvider.prototype.chan = function (channel) {
         this.bindChan(channel);
 };
 
+/*
+ * Bind provider to a specific channel.
+ *
+ * The channel parameter is an identifier that will be used by the underlying
+ * provider to select the appropriate source channel. For instance with a VLC
+ * provider, it will be the name of the channel as found in the current
+ * playlist.
+ *
+ * The advantage of selecting a channel with this method is that a single
+ * stream provider can used to support multiple channels (each call to bind
+ * returns a object specialized for a given channel, but still bound to the
+ * original provider). This is particularly useful with sources that don't
+ * support load balancing. You can expose all channels and get a "lock" for
+ * free that will prevent any attempt to overuse the source.
+ */
 IptvProvider.prototype.bindChan = function(channel) {
         /*
          * wrap the current provider and bind it to a specific
@@ -85,13 +104,16 @@ IptvProvider.prototype.bindChan = function(channel) {
         return new _bound(channel);
 };
 
+/*
+ * Provide an user-friendly channel name for playlist generation
+ */
 IptvProvider.prototype.toString = function() {
         return this._channel;
 };
 
 /*
  * Any IptvProvider must implement all methods below
- *      - _make_stream: create a stream and pass it down to stream_db
+ *      - _make_stream: create a stream and pass it down to stream_cb
  *      - _end_stream: stop a running stream
  */
 IptvProvider.prototype._get_stream = function(stream_cb, err_cb) {

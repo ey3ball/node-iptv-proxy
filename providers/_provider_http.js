@@ -6,6 +6,15 @@ var http = require('http');
 
 util.inherits(HttpProvider, IptvProvider);
 
+/*
+ * The HttpProvider cannot be used directly. It is a base class that enables
+ * implenting an IptvProvider by simply providing a means to determine a stream
+ * url (_get_url and _release).
+ *
+ * It implements all the necessary http legwork (handling http errors, etc) and
+ * lets the actual provider with the simple task of returning an URL
+ * corresponding to the desired channel.
+ */
 function HttpProvider(opts) {
         HttpProvider.super_.call(this, opts);
 }
@@ -21,7 +30,6 @@ HttpProvider.prototype._get_stream = function(stream_cb, err_cb) {
                 req.on('error', function(e) {
                         console.log("CHAN: " + chan + " failed to start - " + e.message);
 
-                        /* config.channels[chan].stop() */;
                         err_cb();
                 });
 
