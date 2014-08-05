@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<node ro="rw" name="Undefined" id="1">
+<node ro="ro" name="Playlist" id="2">
+<leaf ro="rw" name="France 2 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=201&amp;flavour=hd" id="5" duration="0"/>
+<leaf ro="rw" name="France 2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=201&amp;flavour=sd" id="6" duration="0"/>
+<leaf ro="rw" name="France 2 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=201&amp;flavour=ld" id="7" duration="0"/>
+<leaf ro="rw" name="France 3 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=ld" id="8" duration="0"/>
+<leaf ro="rw" name="France 3 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=hd" id="9" duration="0"/>
+<leaf ro="rw" name="France 3 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=sd" id="10" duration="0"/>
+<leaf ro="rw" name="France 5 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=203&amp;flavour=hd" id="11" duration="0"/>
+<leaf ro="rw" name="France 5 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=203&amp;flavour=sd" id="12" duration="0"/>
+<leaf ro="rw" name="Arte (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=204&amp;flavour=ld" id="13" duration="0"/>
+<leaf ro="rw" name="Arte (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=204&amp;flavour=hd" id="14" duration="0"/>
+<leaf ro="rw" name="Arte (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=204&amp;flavour=sd" id="15" duration="0"/>
+<leaf ro="rw" name="D8 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=372&amp;flavour=sd" id="16" duration="0"/>
+<leaf ro="rw" name="TMC (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=497&amp;flavour=sd" id="17" duration="0"/>
+<leaf ro="rw" name="TMC (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=497&amp;flavour=ld" id="18" duration="0"/>
+<leaf ro="rw" name="NT1 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=374&amp;flavour=ld" id="19" duration="0"/>
+<leaf ro="rw" name="NT1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=374&amp;flavour=sd" id="20" duration="0"/>
+<leaf ro="rw" name="NRJ 12 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=375&amp;flavour=hd" id="21" duration="0"/>
+<leaf ro="rw" name="NRJ 12 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=375&amp;flavour=sd" id="22" duration="0"/>
+<leaf ro="rw" name="NRJ 12 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=375&amp;flavour=ld" id="23" duration="0"/>
+<leaf ro="rw" name="La Chaîne Parlementaire (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=226&amp;flavour=sd" id="24" duration="0"/>
+<leaf ro="rw" name="La Chaîne Parlementaire (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=226&amp;flavour=ld" id="25" duration="0"/>
+<leaf ro="rw" name="France 4 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=376&amp;flavour=hd" id="26" duration="0"/>
+<leaf ro="rw" name="France 4 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=376&amp;flavour=sd" id="27" duration="0"/>
+<leaf ro="rw" name="France 4 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=376&amp;flavour=ld" id="28" duration="0"/>
+<leaf ro="rw" name="BFM TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=400&amp;flavour=ld" id="29" duration="0"/>
+<leaf ro="rw" name="BFM TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=400&amp;flavour=hd" id="30" duration="0"/>
+<leaf ro="rw" name="BFM TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=400&amp;flavour=sd" id="31" duration="0"/>
+<leaf ro="rw" name="i&gt; TELE (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=679&amp;flavour=sd" id="32" duration="0"/>
+<leaf ro="rw" name="D17 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=678&amp;flavour=hd" id="33" duration="0"/>
+<leaf ro="rw" name="D17 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=678&amp;flavour=sd" id="34" duration="0"/>
+<leaf ro="rw" name="France Ô (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=238&amp;flavour=sd" id="35" duration="0"/>
+<leaf ro="rw" name="L&#39;Equipe 21 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=994&amp;flavour=ld" id="36" duration="0"/>
+<leaf ro="rw" name="L&#39;Equipe 21 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=994&amp;flavour=hd" id="37" duration="0"/>
+<leaf ro="rw" name="Numéro 23 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=996&amp;flavour=ld" id="38" duration="0"/>
+<leaf ro="rw" name="Numéro 23 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=996&amp;flavour=hd" id="39" duration="0"/>
+<leaf ro="rw" name="RMC Découverte (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=997&amp;flavour=ld" id="40" duration="0"/>
+<leaf ro="rw" name="RMC Découverte (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=997&amp;flavour=hd" id="41" duration="0"/>
+<leaf ro="rw" name="Chérie 25 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=998&amp;flavour=ld" id="42" duration="0"/>
+<leaf ro="rw" name="Chérie 25 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=998&amp;flavour=hd" id="43" duration="0"/>
+<leaf ro="rw" name="Paris Première (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=213&amp;flavour=ld" id="44" duration="0"/>
+<leaf ro="rw" name="TEVA (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=404&amp;flavour=ld" id="45" duration="0"/>
+<leaf ro="rw" name="RTL9 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=210&amp;flavour=ld" id="46" duration="0"/>
+<leaf ro="rw" name="RTL9 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=210&amp;flavour=hd" id="47" duration="0"/>
+<leaf ro="rw" name="Action (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=242&amp;flavour=ld" id="48" duration="0"/>
+<leaf ro="rw" name="Action (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=242&amp;flavour=hd" id="49" duration="0"/>
+<leaf ro="rw" name="Ciné Polar (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=244&amp;flavour=hd" id="50" duration="0"/>
+<leaf ro="rw" name="Ciné Polar (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=244&amp;flavour=ld" id="51" duration="0"/>
+<leaf ro="rw" name="Ciné FX (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=243&amp;flavour=ld" id="52" duration="0"/>
+<leaf ro="rw" name="Ciné FX (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=243&amp;flavour=hd" id="53" duration="0"/>
+<leaf ro="rw" name="Vivolta (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=940&amp;flavour=ld" id="54" duration="0"/>
+<leaf ro="rw" name="AB 1 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=211&amp;flavour=ld" id="55" duration="0"/>
+<leaf ro="rw" name="AB 1 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=211&amp;flavour=hd" id="56" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS 1 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=966&amp;flavour=hd" id="57" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS 1 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=966&amp;flavour=ld" id="58" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS 2 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=970&amp;flavour=hd" id="59" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS 2 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=970&amp;flavour=ld" id="60" duration="0"/>
+<leaf ro="rw" name="Paramount Channel (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1050&amp;flavour=hd" id="61" duration="0"/>
+<leaf ro="rw" name="Paramount Channel (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1050&amp;flavour=ld" id="62" duration="0"/>
+<leaf ro="rw" name="M6 Music (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=430&amp;flavour=ld" id="63" duration="0"/>
+<leaf ro="rw" name="M6 Music Club (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=431&amp;flavour=ld" id="64" duration="0"/>
+<leaf ro="rw" name="M6 Music Black (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=432&amp;flavour=ld" id="65" duration="0"/>
+<leaf ro="rw" name="Trace Tropical (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=769&amp;flavour=sd" id="66" duration="0"/>
+<leaf ro="rw" name="Trace Urban (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=228&amp;flavour=sd" id="67" duration="0"/>
+<leaf ro="rw" name="NRJ Hits (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=620&amp;flavour=hd" id="68" duration="0"/>
+<leaf ro="rw" name="NRJ Hits (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=620&amp;flavour=sd" id="69" duration="0"/>
+<leaf ro="rw" name="NRJ Hits (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=620&amp;flavour=ld" id="70" duration="0"/>
+<leaf ro="rw" name="Game One Music HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=799&amp;flavour=hd" id="71" duration="0"/>
+<leaf ro="rw" name="Mezzo (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=265&amp;flavour=sd" id="72" duration="0"/>
+<leaf ro="rw" name="Mezzo Live HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=858&amp;flavour=hd" id="73" duration="0"/>
+<leaf ro="rw" name="MCM (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=621&amp;flavour=sd" id="74" duration="0"/>
+<leaf ro="rw" name="MCM TOP (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=622&amp;flavour=sd" id="75" duration="0"/>
+<leaf ro="rw" name="MCM POP (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=623&amp;flavour=sd" id="76" duration="0"/>
+<leaf ro="rw" name="Clubbing TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=767&amp;flavour=hd" id="77" duration="0"/>
+<leaf ro="rw" name="Clubbing TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=767&amp;flavour=ld" id="78" duration="0"/>
+<leaf ro="rw" name="OFIVE (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=910&amp;flavour=ld" id="79" duration="0"/>
+<leaf ro="rw" name="J4T (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=981&amp;flavour=ld" id="80" duration="0"/>
+<leaf ro="rw" name="Virgin Radio TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1071&amp;flavour=ld" id="81" duration="0"/>
+<leaf ro="rw" name="Fox News (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1073&amp;flavour=ld" id="82" duration="0"/>
+<leaf ro="rw" name="TV5 Monde (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=206&amp;flavour=sd" id="83" duration="0"/>
+<leaf ro="rw" name="TV5 Monde (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=206&amp;flavour=hd" id="84" duration="0"/>
+<leaf ro="rw" name="BFM Business (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=897&amp;flavour=ld" id="85" duration="0"/>
+<leaf ro="rw" name="BFM Business (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=897&amp;flavour=hd" id="86" duration="0"/>
+<leaf ro="rw" name="Euronews Int (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=949&amp;flavour=sd" id="87" duration="0"/>
+<leaf ro="rw" name="Euronews (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=205&amp;flavour=sd" id="88" duration="0"/>
+<leaf ro="rw" name="Bloomberg TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=207&amp;flavour=sd" id="89" duration="0"/>
+<leaf ro="rw" name="Al Jazeera International (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=494&amp;flavour=sd" id="90" duration="0"/>
+<leaf ro="rw" name="Sky News International (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=355&amp;flavour=sd" id="91" duration="0"/>
+<leaf ro="rw" name="i24 News (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1048&amp;flavour=ld" id="92" duration="0"/>
+<leaf ro="rw" name="CNBC (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=208&amp;flavour=sd" id="93" duration="0"/>
+<leaf ro="rw" name="Assemblée Nationale 24h/24 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=688&amp;flavour=sd" id="94" duration="0"/>
+<leaf ro="rw" name="Public Sénat (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=692&amp;flavour=sd" id="95" duration="0"/>
+<leaf ro="rw" name="Campagnes TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1029&amp;flavour=hd" id="96" duration="0"/>
+<leaf ro="rw" name="Campagnes TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1029&amp;flavour=ld" id="97" duration="0"/>
+<leaf ro="rw" name="Arretsurimages.tv (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=738&amp;flavour=sd" id="98" duration="0"/>
+<leaf ro="rw" name="France 24 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=739&amp;flavour=sd" id="99" duration="0"/>
+<leaf ro="rw" name="France 24 English (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=740&amp;flavour=sd" id="100" duration="0"/>
+<leaf ro="rw" name="France 24 Arab (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=741&amp;flavour=sd" id="101" duration="0"/>
+<leaf ro="rw" name="GONG BASE (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1045&amp;flavour=ld" id="102" duration="0"/>
+<leaf ro="rw" name="GONG BASE (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1045&amp;flavour=hd" id="103" duration="0"/>
+<leaf ro="rw" name="KZTV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=801&amp;flavour=ld" id="104" duration="0"/>
+<leaf ro="rw" name="KZTV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=801&amp;flavour=hd" id="105" duration="0"/>
+<leaf ro="rw" name="Game One (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=220&amp;flavour=sd" id="106" duration="0"/>
+<leaf ro="rw" name="Game One +1 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=979&amp;flavour=ld" id="107" duration="0"/>
+<leaf ro="rw" name="Lucky Jack (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=891&amp;flavour=hd" id="108" duration="0"/>
+<leaf ro="rw" name="Lucky Jack (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=891&amp;flavour=ld" id="109" duration="0"/>
+<leaf ro="rw" name="Men&#39;s Up TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=878&amp;flavour=ld" id="110" duration="0"/>
+<leaf ro="rw" name="Nolife (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=658&amp;flavour=ld" id="111" duration="0"/>
+<leaf ro="rw" name="Nolife (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=658&amp;flavour=hd" id="112" duration="0"/>
+<leaf ro="rw" name="GONG (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=813&amp;flavour=sd" id="113" duration="0"/>
+<leaf ro="rw" name="GONG (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=813&amp;flavour=hd" id="114" duration="0"/>
+<leaf ro="rw" name="L&#39;Enôrme TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1037&amp;flavour=ld" id="115" duration="0"/>
+<leaf ro="rw" name="Mangas (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=253&amp;flavour=hd" id="116" duration="0"/>
+<leaf ro="rw" name="Mangas (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=253&amp;flavour=ld" id="117" duration="0"/>
+<leaf ro="rw" name="FTV HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=454&amp;flavour=hd" id="118" duration="0"/>
+<leaf ro="rw" name="Eurochannel (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=959&amp;flavour=hd" id="119" duration="0"/>
+<leaf ro="rw" name="Fashion TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=221&amp;flavour=sd" id="120" duration="0"/>
+<leaf ro="rw" name="World Fashion (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=724&amp;flavour=sd" id="121" duration="0"/>
+<leaf ro="rw" name="Trace Sports Stars (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=965&amp;flavour=ld" id="122" duration="0"/>
+<leaf ro="rw" name="Trace Sports Stars (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=965&amp;flavour=hd" id="123" duration="0"/>
+<leaf ro="rw" name="Equidia Live (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=212&amp;flavour=sd" id="124" duration="0"/>
+<leaf ro="rw" name="Fight Box HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=969&amp;flavour=hd" id="125" duration="0"/>
+<leaf ro="rw" name="Sport 365 TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=982&amp;flavour=hd" id="126" duration="0"/>
+<leaf ro="rw" name="AB Moteurs (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=222&amp;flavour=hd" id="127" duration="0"/>
+<leaf ro="rw" name="AB Moteurs (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=222&amp;flavour=ld" id="128" duration="0"/>
+<leaf ro="rw" name="Ginx (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=618&amp;flavour=sd" id="129" duration="0"/>
+<leaf ro="rw" name="Premiere Futebol Clube (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=755&amp;flavour=sd" id="130" duration="0"/>
+<leaf ro="rw" name="Golf Channel (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=892&amp;flavour=hd" id="131" duration="0"/>
+<leaf ro="rw" name="Golf Channel (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=892&amp;flavour=ld" id="132" duration="0"/>
+<leaf ro="rw" name="Ikono (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1072&amp;flavour=hd" id="133" duration="0"/>
+<leaf ro="rw" name="Travel Channel (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=772&amp;flavour=sd" id="134" duration="0"/>
+<leaf ro="rw" name="Purescreens Nature HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=825&amp;flavour=hd" id="135" duration="0"/>
+<leaf ro="rw" name="Nautical Channel (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=255&amp;flavour=sd" id="136" duration="0"/>
+<leaf ro="rw" name="Escales (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=252&amp;flavour=ld" id="137" duration="0"/>
+<leaf ro="rw" name="Escales (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=252&amp;flavour=hd" id="138" duration="0"/>
+<leaf ro="rw" name="Montagne TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=901&amp;flavour=ld" id="139" duration="0"/>
+<leaf ro="rw" name="Luxe.TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=460&amp;flavour=hd" id="140" duration="0"/>
+<leaf ro="rw" name="Luxe.TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=460&amp;flavour=sd" id="141" duration="0"/>
+<leaf ro="rw" name="Histoire (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=235&amp;flavour=sd" id="142" duration="0"/>
+<leaf ro="rw" name="Toute l&#39;Histoire (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=250&amp;flavour=ld" id="143" duration="0"/>
+<leaf ro="rw" name="Toute l&#39;Histoire (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=250&amp;flavour=hd" id="144" duration="0"/>
+<leaf ro="rw" name="Animaux (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=248&amp;flavour=ld" id="145" duration="0"/>
+<leaf ro="rw" name="Animaux (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=248&amp;flavour=hd" id="146" duration="0"/>
+<leaf ro="rw" name="Chasse et pêche (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=249&amp;flavour=hd" id="147" duration="0"/>
+<leaf ro="rw" name="Chasse et pêche (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=249&amp;flavour=ld" id="148" duration="0"/>
+<leaf ro="rw" name="Encyclo (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=251&amp;flavour=hd" id="149" duration="0"/>
+<leaf ro="rw" name="Encyclo (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=251&amp;flavour=ld" id="150" duration="0"/>
+<leaf ro="rw" name="Demain.tv (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=227&amp;flavour=sd" id="151" duration="0"/>
+<leaf ro="rw" name="KTO (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=223&amp;flavour=sd" id="152" duration="0"/>
+<leaf ro="rw" name="MyZen.tv (3D)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=915&amp;flavour=d3d" id="153" duration="0"/>
+<leaf ro="rw" name="MyZen.tv (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=770&amp;flavour=ld" id="154" duration="0"/>
+<leaf ro="rw" name="MyZen.tv (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=770&amp;flavour=hd" id="155" duration="0"/>
+<leaf ro="rw" name="3Flow 3D (3D)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=931&amp;flavour=d3d" id="156" duration="0"/>
+<leaf ro="rw" name="3A Telesud (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=356&amp;flavour=sd" id="157" duration="0"/>
+<leaf ro="rw" name="The Museum Channel (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=906&amp;flavour=hd" id="158" duration="0"/>
+<leaf ro="rw" name="Souvenirs from Earth (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=710&amp;flavour=hd" id="159" duration="0"/>
+<leaf ro="rw" name="Souvenirs from Earth (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=710&amp;flavour=sd" id="160" duration="0"/>
+<leaf ro="rw" name="Astro Center TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=415&amp;flavour=sd" id="161" duration="0"/>
+<leaf ro="rw" name="M6 Boutique &amp; Co (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=359&amp;flavour=ld" id="162" duration="0"/>
+<leaf ro="rw" name="M6 Boutique &amp; Co (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=359&amp;flavour=sd" id="163" duration="0"/>
+<leaf ro="rw" name="Best of Shopping (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=358&amp;flavour=ld" id="164" duration="0"/>
+<leaf ro="rw" name="Best of Shopping (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=358&amp;flavour=sd" id="165" duration="0"/>
+<leaf ro="rw" name="Ma Chaîne Etudiante (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=831&amp;flavour=sd" id="166" duration="0"/>
+<leaf ro="rw" name="C Music (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=683&amp;flavour=sd" id="167" duration="0"/>
+<leaf ro="rw" name="VH1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=233&amp;flavour=sd" id="168" duration="0"/>
+<leaf ro="rw" name="VH1 Classic (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=232&amp;flavour=sd" id="169" duration="0"/>
+<leaf ro="rw" name="Brava HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=820&amp;flavour=hd" id="170" duration="0"/>
+<leaf ro="rw" name="Mélody (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=237&amp;flavour=sd" id="171" duration="0"/>
+<leaf ro="rw" name="Rock TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=759&amp;flavour=ld" id="172" duration="0"/>
+<leaf ro="rw" name="Relax TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=760&amp;flavour=sd" id="173" duration="0"/>
+<leaf ro="rw" name="Jukebox (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=758&amp;flavour=ld" id="174" duration="0"/>
+<leaf ro="rw" name="Deluxe Lounge HD (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=887&amp;flavour=hd" id="175" duration="0"/>
+<leaf ro="rw" name="BeBlack (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=918&amp;flavour=ld" id="176" duration="0"/>
+<leaf ro="rw" name="France 3 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=ld" id="177" duration="0"/>
+<leaf ro="rw" name="France 3 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=hd" id="178" duration="0"/>
+<leaf ro="rw" name="France 3 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=202&amp;flavour=sd" id="179" duration="0"/>
+<leaf ro="rw" name="France 3 Alpes (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=283&amp;flavour=sd" id="180" duration="0"/>
+<leaf ro="rw" name="France 3 Alsace (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=280&amp;flavour=sd" id="181" duration="0"/>
+<leaf ro="rw" name="France 3 Aquitaine (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=284&amp;flavour=sd" id="182" duration="0"/>
+<leaf ro="rw" name="France 3 Auvergne (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=285&amp;flavour=sd" id="183" duration="0"/>
+<leaf ro="rw" name="Normandie (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=298&amp;flavour=sd" id="184" duration="0"/>
+<leaf ro="rw" name="France 3 Bourgogne (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=279&amp;flavour=sd" id="185" duration="0"/>
+<leaf ro="rw" name="France 3 Bretagne (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=286&amp;flavour=sd" id="186" duration="0"/>
+<leaf ro="rw" name="France 3 Centre (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=287&amp;flavour=sd" id="187" duration="0"/>
+<leaf ro="rw" name="Ardenne (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=288&amp;flavour=sd" id="188" duration="0"/>
+<leaf ro="rw" name="France 3 Corse Via Stella (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=289&amp;flavour=sd" id="189" duration="0"/>
+<leaf ro="rw" name="d&#39;Azur (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=290&amp;flavour=sd" id="190" duration="0"/>
+<leaf ro="rw" name="Comté (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=291&amp;flavour=sd" id="191" duration="0"/>
+<leaf ro="rw" name="Normandie (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=297&amp;flavour=sd" id="192" duration="0"/>
+<leaf ro="rw" name="Roussillon (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=292&amp;flavour=sd" id="193" duration="0"/>
+<leaf ro="rw" name="France 3 Limousin (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=293&amp;flavour=sd" id="194" duration="0"/>
+<leaf ro="rw" name="France 3 Lorraine (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=294&amp;flavour=sd" id="195" duration="0"/>
+<leaf ro="rw" name="France 3 Midi Pyrénées (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=295&amp;flavour=sd" id="196" duration="0"/>
+<leaf ro="rw" name="Calais (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=296&amp;flavour=sd" id="197" duration="0"/>
+<leaf ro="rw" name="France (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=257&amp;flavour=sd" id="198" duration="0"/>
+<leaf ro="rw" name="France 3 Pays de Loire (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=299&amp;flavour=sd" id="199" duration="0"/>
+<leaf ro="rw" name="France 3 Picardie (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=300&amp;flavour=sd" id="200" duration="0"/>
+<leaf ro="rw" name="Charentes (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=301&amp;flavour=sd" id="201" duration="0"/>
+<leaf ro="rw" name="Alpes (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=302&amp;flavour=sd" id="202" duration="0"/>
+<leaf ro="rw" name="Alpes (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=303&amp;flavour=sd" id="203" duration="0"/>
+<leaf ro="rw" name="Grand Lille TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=826&amp;flavour=sd" id="204" duration="0"/>
+<leaf ro="rw" name="Toulouse (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=281&amp;flavour=sd" id="205" duration="0"/>
+<leaf ro="rw" name="TV7 Bordeaux (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=268&amp;flavour=sd" id="206" duration="0"/>
+<leaf ro="rw" name="Blanc (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=319&amp;flavour=sd" id="207" duration="0"/>
+<leaf ro="rw" name="TéléGrenoble (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=423&amp;flavour=sd" id="208" duration="0"/>
+<leaf ro="rw" name="Telif (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=360&amp;flavour=sd" id="209" duration="0"/>
+<leaf ro="rw" name="La Locale (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=363&amp;flavour=sd" id="210" duration="0"/>
+<leaf ro="rw" name="Normandie TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=383&amp;flavour=sd" id="211" duration="0"/>
+<leaf ro="rw" name="Télénantes Nantes 7 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=389&amp;flavour=sd" id="212" duration="0"/>
+<leaf ro="rw" name="La Chaîne Marseille (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=414&amp;flavour=sd" id="213" duration="0"/>
+<leaf ro="rw" name="TV Tours (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=493&amp;flavour=sd" id="214" duration="0"/>
+<leaf ro="rw" name="BFM Business Paris (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=898&amp;flavour=sd" id="215" duration="0"/>
+<leaf ro="rw" name="IDF 1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=689&amp;flavour=sd" id="216" duration="0"/>
+<leaf ro="rw" name="Locales Ile de France (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=756&amp;flavour=sd" id="217" duration="0"/>
+<leaf ro="rw" name="Alsace 20 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=753&amp;flavour=sd" id="218" duration="0"/>
+<leaf ro="rw" name="Telessonne (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=754&amp;flavour=ld" id="219" duration="0"/>
+<leaf ro="rw" name="TV Fil 78 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=855&amp;flavour=ld" id="220" duration="0"/>
+<leaf ro="rw" name="Wéo (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=832&amp;flavour=sd" id="221" duration="0"/>
+<leaf ro="rw" name="TLM (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=267&amp;flavour=sd" id="222" duration="0"/>
+<leaf ro="rw" name="Canal Local Valenciennois (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=958&amp;flavour=ld" id="223" duration="0"/>
+<leaf ro="rw" name="Canal 10 Guadeloupe (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=929&amp;flavour=ld" id="224" duration="0"/>
+<leaf ro="rw" name="Yvelines Première (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=895&amp;flavour=ld" id="225" duration="0"/>
+<leaf ro="rw" name="Calaisis TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=879&amp;flavour=ld" id="226" duration="0"/>
+<leaf ro="rw" name="TV SUD Camargue Cévennes (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=880&amp;flavour=ld" id="227" duration="0"/>
+<leaf ro="rw" name="Mirabelle TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=907&amp;flavour=ld" id="228" duration="0"/>
+<leaf ro="rw" name="Vosges Television (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=900&amp;flavour=ld" id="229" duration="0"/>
+<leaf ro="rw" name="TV SUD Montpellier (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=930&amp;flavour=ld" id="230" duration="0"/>
+<leaf ro="rw" name="Maritima TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=951&amp;flavour=ld" id="231" duration="0"/>
+<leaf ro="rw" name="TV Vendée (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=964&amp;flavour=ld" id="232" duration="0"/>
+<leaf ro="rw" name="Opal&#39;TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=980&amp;flavour=ld" id="233" duration="0"/>
+<leaf ro="rw" name="TNA (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=482&amp;flavour=sd" id="234" duration="0"/>
+<leaf ro="rw" name="TVR (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1063&amp;flavour=hd" id="235" duration="0"/>
+<leaf ro="rw" name="TVR (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1063&amp;flavour=ld" id="236" duration="0"/>
+<leaf ro="rw" name="Tébésud (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1064&amp;flavour=hd" id="237" duration="0"/>
+<leaf ro="rw" name="Tébésud (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1064&amp;flavour=ld" id="238" duration="0"/>
+<leaf ro="rw" name="Tébéo (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1065&amp;flavour=hd" id="239" duration="0"/>
+<leaf ro="rw" name="Tébéo (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1065&amp;flavour=ld" id="240" duration="0"/>
+<leaf ro="rw" name="D!CI TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1066&amp;flavour=ld" id="241" duration="0"/>
+<leaf ro="rw" name="MFM TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1067&amp;flavour=ld" id="242" duration="0"/>
+<leaf ro="rw" name="MFM TV (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1067&amp;flavour=hd" id="243" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 3 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=971&amp;flavour=ld" id="244" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 3 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=971&amp;flavour=hd" id="245" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 4 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=972&amp;flavour=ld" id="246" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 4 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=972&amp;flavour=hd" id="247" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 5 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=973&amp;flavour=ld" id="248" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 5 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=973&amp;flavour=hd" id="249" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 6 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=974&amp;flavour=ld" id="250" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 6 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=974&amp;flavour=hd" id="251" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 7 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=975&amp;flavour=ld" id="252" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 7 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=975&amp;flavour=hd" id="253" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 8 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=976&amp;flavour=ld" id="254" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 8 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=976&amp;flavour=hd" id="255" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 9 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=977&amp;flavour=ld" id="256" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 9 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=977&amp;flavour=hd" id="257" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 10 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=978&amp;flavour=ld" id="258" duration="0"/>
+<leaf ro="rw" name="beIN SPORTS MAX 10 (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=978&amp;flavour=hd" id="259" duration="0"/>
+<leaf ro="rw" name="RTB (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=774&amp;flavour=sd" id="260" duration="0"/>
+<leaf ro="rw" name="ORTB (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=810&amp;flavour=sd" id="261" duration="0"/>
+<leaf ro="rw" name="TFM (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=960&amp;flavour=sd" id="262" duration="0"/>
+<leaf ro="rw" name="Canal 2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=781&amp;flavour=sd" id="263" duration="0"/>
+<leaf ro="rw" name="CRTV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=782&amp;flavour=sd" id="264" duration="0"/>
+<leaf ro="rw" name="STV2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=783&amp;flavour=sd" id="265" duration="0"/>
+<leaf ro="rw" name="Equinoxe (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=833&amp;flavour=sd" id="266" duration="0"/>
+<leaf ro="rw" name="Trace Africa (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=963&amp;flavour=sd" id="267" duration="0"/>
+<leaf ro="rw" name="Télécongo (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=784&amp;flavour=sd" id="268" duration="0"/>
+<leaf ro="rw" name="Nollywood (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=800&amp;flavour=ld" id="269" duration="0"/>
+<leaf ro="rw" name="RTI (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=941&amp;flavour=sd" id="270" duration="0"/>
+<leaf ro="rw" name="Gabon Télévision (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=916&amp;flavour=ld" id="271" duration="0"/>
+<leaf ro="rw" name="RTG (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=917&amp;flavour=ld" id="272" duration="0"/>
+<leaf ro="rw" name="ORTC (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=888&amp;flavour=ld" id="273" duration="0"/>
+<leaf ro="rw" name="ORTM (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=785&amp;flavour=sd" id="274" duration="0"/>
+<leaf ro="rw" name="2STV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=786&amp;flavour=sd" id="275" duration="0"/>
+<leaf ro="rw" name="RTS (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=787&amp;flavour=sd" id="276" duration="0"/>
+<leaf ro="rw" name="La Chaine du futur (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=854&amp;flavour=ld" id="277" duration="0"/>
+<leaf ro="rw" name="Africable (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=788&amp;flavour=sd" id="278" duration="0"/>
+<leaf ro="rw" name="SUD1ere (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1068&amp;flavour=ld" id="279" duration="0"/>
+<leaf ro="rw" name="Vox Africa (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=773&amp;flavour=sd" id="280" duration="0"/>
+<leaf ro="rw" name="Africabox (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=811&amp;flavour=sd" id="281" duration="0"/>
+<leaf ro="rw" name="OutreMer 5 TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=468&amp;flavour=sd" id="282" duration="0"/>
+<leaf ro="rw" name="MBOA TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=837&amp;flavour=ld" id="283" duration="0"/>
+<leaf ro="rw" name="Medi1TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=730&amp;flavour=sd" id="284" duration="0"/>
+<leaf ro="rw" name="Canal Algérie (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=274&amp;flavour=sd" id="285" duration="0"/>
+<leaf ro="rw" name="Algérie 3 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=943&amp;flavour=ld" id="286" duration="0"/>
+<leaf ro="rw" name="Algérie 5 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=944&amp;flavour=ld" id="287" duration="0"/>
+<leaf ro="rw" name="Tamazight TV4 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=945&amp;flavour=ld" id="288" duration="0"/>
+<leaf ro="rw" name="Beur TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=225&amp;flavour=ld" id="289" duration="0"/>
+<leaf ro="rw" name="Berbère TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=256&amp;flavour=sd" id="290" duration="0"/>
+<leaf ro="rw" name="Berbère Jeunesse (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=936&amp;flavour=sd" id="291" duration="0"/>
+<leaf ro="rw" name="Berbère Music (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=937&amp;flavour=sd" id="292" duration="0"/>
+<leaf ro="rw" name="Documentaire (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=948&amp;flavour=sd" id="293" duration="0"/>
+<leaf ro="rw" name="CCTV4 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=469&amp;flavour=sd" id="294" duration="0"/>
+<leaf ro="rw" name="News (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=479&amp;flavour=sd" id="295" duration="0"/>
+<leaf ro="rw" name="CCTV F (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=480&amp;flavour=sd" id="296" duration="0"/>
+<leaf ro="rw" name="CCTV Divertissement (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=470&amp;flavour=sd" id="297" duration="0"/>
+<leaf ro="rw" name="La chaîne chinoise (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=471&amp;flavour=sd" id="298" duration="0"/>
+<leaf ro="rw" name="Beijing TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=472&amp;flavour=sd" id="299" duration="0"/>
+<leaf ro="rw" name="Shanghai Dragon TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=473&amp;flavour=sd" id="300" duration="0"/>
+<leaf ro="rw" name="La chaîne internationale de Jiangsu (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=474&amp;flavour=sd" id="301" duration="0"/>
+<leaf ro="rw" name="Hunan Satellite TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=475&amp;flavour=sd" id="302" duration="0"/>
+<leaf ro="rw" name="Xiamen Star TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=476&amp;flavour=sd" id="303" duration="0"/>
+<leaf ro="rw" name="Zhejiang Star TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=477&amp;flavour=sd" id="304" duration="0"/>
+<leaf ro="rw" name="Guangdong Southern TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=478&amp;flavour=sd" id="305" duration="0"/>
+<leaf ro="rw" name="Phoenix Infonews (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=481&amp;flavour=sd" id="306" duration="0"/>
+<leaf ro="rw" name="Phoenix Chinese News and Entertainment (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=266&amp;flavour=sd" id="307" duration="0"/>
+<leaf ro="rw" name="Zee TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=420&amp;flavour=sd" id="308" duration="0"/>
+<leaf ro="rw" name="Zee Cinema (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=421&amp;flavour=sd" id="309" duration="0"/>
+<leaf ro="rw" name="Arirang (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=894&amp;flavour=ld" id="310" duration="0"/>
+<leaf ro="rw" name="B4U Music (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=904&amp;flavour=ld" id="311" duration="0"/>
+<leaf ro="rw" name="TV Romania (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=318&amp;flavour=sd" id="312" duration="0"/>
+<leaf ro="rw" name="Pro TV Int. (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=961&amp;flavour=ld" id="313" duration="0"/>
+<leaf ro="rw" name="BBC Entertainment (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=413&amp;flavour=sd" id="314" duration="0"/>
+<leaf ro="rw" name="God TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=386&amp;flavour=sd" id="315" duration="0"/>
+<leaf ro="rw" name="Noursat (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1069&amp;flavour=ld" id="316" duration="0"/>
+<leaf ro="rw" name="Telesur (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=729&amp;flavour=sd" id="317" duration="0"/>
+<leaf ro="rw" name="Ritmoson Latino (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=407&amp;flavour=sd" id="318" duration="0"/>
+<leaf ro="rw" name="De pelicula (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=408&amp;flavour=sd" id="319" duration="0"/>
+<leaf ro="rw" name="TL Novelas (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=409&amp;flavour=sd" id="320" duration="0"/>
+<leaf ro="rw" name="Canal de las Estrellas (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=410&amp;flavour=sd" id="321" duration="0"/>
+<leaf ro="rw" name="Telehit (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=411&amp;flavour=sd" id="322" duration="0"/>
+<leaf ro="rw" name="TVE I (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=306&amp;flavour=sd" id="323" duration="0"/>
+<leaf ro="rw" name="Canal 24 Horas (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=307&amp;flavour=sd" id="324" duration="0"/>
+<leaf ro="rw" name="ETB Sat (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=371&amp;flavour=sd" id="325" duration="0"/>
+<leaf ro="rw" name="Telenova (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=720&amp;flavour=sd" id="326" duration="0"/>
+<leaf ro="rw" name="Antenna 1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=771&amp;flavour=sd" id="327" duration="0"/>
+<leaf ro="rw" name="Rai Uno (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=309&amp;flavour=sd" id="328" duration="0"/>
+<leaf ro="rw" name="Rai Due (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=314&amp;flavour=sd" id="329" duration="0"/>
+<leaf ro="rw" name="Rai Tre (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=315&amp;flavour=sd" id="330" duration="0"/>
+<leaf ro="rw" name="Mediaset Italia (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=839&amp;flavour=ld" id="331" duration="0"/>
+<leaf ro="rw" name="RTR Planeta (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=317&amp;flavour=sd" id="332" duration="0"/>
+<leaf ro="rw" name="TVN 24 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=794&amp;flavour=sd" id="333" duration="0"/>
+<leaf ro="rw" name="IMED TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=838&amp;flavour=ld" id="334" duration="0"/>
+<leaf ro="rw" name="Ennahar (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1070&amp;flavour=ld" id="335" duration="0"/>
+<leaf ro="rw" name="SkyTurk (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=913&amp;flavour=ld" id="336" duration="0"/>
+<leaf ro="rw" name="Ulusal Kanal (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=914&amp;flavour=ld" id="337" duration="0"/>
+<leaf ro="rw" name="Arriyadia (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=908&amp;flavour=ld" id="338" duration="0"/>
+<leaf ro="rw" name="TV Polonia (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=278&amp;flavour=sd" id="339" duration="0"/>
+<leaf ro="rw" name="TVP Kultura (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=485&amp;flavour=sd" id="340" duration="0"/>
+<leaf ro="rw" name="TVP Info (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=486&amp;flavour=sd" id="341" duration="0"/>
+<leaf ro="rw" name="ITVN (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=795&amp;flavour=sd" id="342" duration="0"/>
+<leaf ro="rw" name="2M Maroc (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=272&amp;flavour=sd" id="343" duration="0"/>
+<leaf ro="rw" name="TVM Europe (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=273&amp;flavour=sd" id="344" duration="0"/>
+<leaf ro="rw" name="Hannibal TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1047&amp;flavour=ld" id="345" duration="0"/>
+<leaf ro="rw" name="Télévision Tunisienne (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=277&amp;flavour=sd" id="346" duration="0"/>
+<leaf ro="rw" name="Al Masriya (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=275&amp;flavour=sd" id="347" duration="0"/>
+<leaf ro="rw" name="Al Jazeera (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=276&amp;flavour=sd" id="348" duration="0"/>
+<leaf ro="rw" name="Al Jazeera Children (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=412&amp;flavour=sd" id="349" duration="0"/>
+<leaf ro="rw" name="ART Cinema (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=327&amp;flavour=sd" id="350" duration="0"/>
+<leaf ro="rw" name="ART Movies (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=328&amp;flavour=sd" id="351" duration="0"/>
+<leaf ro="rw" name="Al Hekayat (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=330&amp;flavour=sd" id="352" duration="0"/>
+<leaf ro="rw" name="Iqraa (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=331&amp;flavour=sd" id="353" duration="0"/>
+<leaf ro="rw" name="ART Aflam 2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=332&amp;flavour=sd" id="354" duration="0"/>
+<leaf ro="rw" name="Cima (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=333&amp;flavour=sd" id="355" duration="0"/>
+<leaf ro="rw" name="MBC (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=334&amp;flavour=ld" id="356" duration="0"/>
+<leaf ro="rw" name="LBC Europe (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=335&amp;flavour=ld" id="357" duration="0"/>
+<leaf ro="rw" name="Hekayat 2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=336&amp;flavour=sd" id="358" duration="0"/>
+<leaf ro="rw" name="O&#39;TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=685&amp;flavour=sd" id="359" duration="0"/>
+<leaf ro="rw" name="Powertürk TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=489&amp;flavour=sd" id="360" duration="0"/>
+<leaf ro="rw" name="TRT1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=490&amp;flavour=sd" id="361" duration="0"/>
+<leaf ro="rw" name="Kanal D (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=463&amp;flavour=sd" id="362" duration="0"/>
+<leaf ro="rw" name="Star TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=464&amp;flavour=sd" id="363" duration="0"/>
+<leaf ro="rw" name="TRT Cocuk (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=798&amp;flavour=sd" id="364" duration="0"/>
+<leaf ro="rw" name="ATV Avrupa (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=467&amp;flavour=sd" id="365" duration="0"/>
+<leaf ro="rw" name="Kanal 24 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=435&amp;flavour=sd" id="366" duration="0"/>
+<leaf ro="rw" name="TRT INT (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=369&amp;flavour=sd" id="367" duration="0"/>
+<leaf ro="rw" name="Kanal 7 INT (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=370&amp;flavour=sd" id="368" duration="0"/>
+<leaf ro="rw" name="Samanyolu TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=391&amp;flavour=sd" id="369" duration="0"/>
+<leaf ro="rw" name="TVT (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=436&amp;flavour=sd" id="370" duration="0"/>
+<leaf ro="rw" name="Hilal TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=446&amp;flavour=sd" id="371" duration="0"/>
+<leaf ro="rw" name="TV5 Turkey (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=447&amp;flavour=sd" id="372" duration="0"/>
+<leaf ro="rw" name="TGRT EU (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=465&amp;flavour=sd" id="373" duration="0"/>
+<leaf ro="rw" name="Show Turk (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=700&amp;flavour=sd" id="374" duration="0"/>
+<leaf ro="rw" name="Halk TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1046&amp;flavour=ld" id="375" duration="0"/>
+<leaf ro="rw" name="GeoTV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=702&amp;flavour=sd" id="376" duration="0"/>
+<leaf ro="rw" name="GeoNews (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=703&amp;flavour=sd" id="377" duration="0"/>
+<leaf ro="rw" name="B4U Movies (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=704&amp;flavour=sd" id="378" duration="0"/>
+<leaf ro="rw" name="Vietnam VTV4 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=723&amp;flavour=sd" id="379" duration="0"/>
+<leaf ro="rw" name="CTN (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=708&amp;flavour=sd" id="380" duration="0"/>
+<leaf ro="rw" name="TVK (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=709&amp;flavour=sd" id="381" duration="0"/>
+<leaf ro="rw" name="KBS (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=761&amp;flavour=sd" id="382" duration="0"/>
+<leaf ro="rw" name="The Israeli Network (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=462&amp;flavour=sd" id="383" duration="0"/>
+<leaf ro="rw" name="Arte Allemand (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=270&amp;flavour=sd" id="384" duration="0"/>
+<leaf ro="rw" name="TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=312&amp;flavour=sd" id="385" duration="0"/>
+<leaf ro="rw" name="RTL (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=985&amp;flavour=ld" id="386" duration="0"/>
+<leaf ro="rw" name="RTL2 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=986&amp;flavour=ld" id="387" duration="0"/>
+<leaf ro="rw" name="Super RTL (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=987&amp;flavour=ld" id="388" duration="0"/>
+<leaf ro="rw" name="RTL Nitro (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=988&amp;flavour=ld" id="389" duration="0"/>
+<leaf ro="rw" name="RTL Vox (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=989&amp;flavour=ld" id="390" duration="0"/>
+<leaf ro="rw" name="ProSieben (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=990&amp;flavour=ld" id="391" duration="0"/>
+<leaf ro="rw" name="Sat1 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=991&amp;flavour=ld" id="392" duration="0"/>
+<leaf ro="rw" name="NTV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=992&amp;flavour=ld" id="393" duration="0"/>
+<leaf ro="rw" name="RTPi (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=388&amp;flavour=sd" id="394" duration="0"/>
+<leaf ro="rw" name="SIC (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=484&amp;flavour=sd" id="395" duration="0"/>
+<leaf ro="rw" name="SIC Noticias (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1038&amp;flavour=ld" id="396" duration="0"/>
+<leaf ro="rw" name="TVI International (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1039&amp;flavour=ld" id="397" duration="0"/>
+<leaf ro="rw" name="Bola TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1041&amp;flavour=ld" id="398" duration="0"/>
+<leaf ro="rw" name="Porto Canal (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1042&amp;flavour=ld" id="399" duration="0"/>
+<leaf ro="rw" name="Baby TV (portugais) (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1043&amp;flavour=ld" id="400" duration="0"/>
+<leaf ro="rw" name="Canal Q (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1049&amp;flavour=ld" id="401" duration="0"/>
+<leaf ro="rw" name="TVI Ficcao (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1059&amp;flavour=sd" id="402" duration="0"/>
+<leaf ro="rw" name="Deepam (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=903&amp;flavour=ld" id="403" duration="0"/>
+<leaf ro="rw" name="Kuwait TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=717&amp;flavour=sd" id="404" duration="0"/>
+<leaf ro="rw" name="Yemen TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=715&amp;flavour=sd" id="405" duration="0"/>
+<leaf ro="rw" name="Dubai TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=748&amp;flavour=sd" id="406" duration="0"/>
+<leaf ro="rw" name="Abu Dhabi TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=749&amp;flavour=sd" id="407" duration="0"/>
+<leaf ro="rw" name="Baraem (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=750&amp;flavour=sd" id="408" duration="0"/>
+<leaf ro="rw" name="Jordan Satellite Channel (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=718&amp;flavour=sd" id="409" duration="0"/>
+<leaf ro="rw" name="Armenia Public TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=380&amp;flavour=sd" id="410" duration="0"/>
+<leaf ro="rw" name="Armenia TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=751&amp;flavour=sd" id="411" duration="0"/>
+<leaf ro="rw" name="Shant TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=752&amp;flavour=sd" id="412" duration="0"/>
+<leaf ro="rw" name="Vesti (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=792&amp;flavour=sd" id="413" duration="0"/>
+<leaf ro="rw" name="Murr TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=843&amp;flavour=ld" id="414" duration="0"/>
+<leaf ro="rw" name="NBN (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=844&amp;flavour=ld" id="415" duration="0"/>
+<leaf ro="rw" name="Future TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=845&amp;flavour=ld" id="416" duration="0"/>
+<leaf ro="rw" name="Nessma (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=957&amp;flavour=ld" id="417" duration="0"/>
+<leaf ro="rw" name="Al Jadeed (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=846&amp;flavour=ld" id="418" duration="0"/>
+<leaf ro="rw" name="AlMajd Holy Quran (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=807&amp;flavour=sd" id="419" duration="0"/>
+<leaf ro="rw" name="Almajd Al Hadeeth Al Nabawy (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=808&amp;flavour=sd" id="420" duration="0"/>
+<leaf ro="rw" name="AlMajd Space Channel (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=809&amp;flavour=sd" id="421" duration="0"/>
+<leaf ro="rw" name="Iqraa Int (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=1035&amp;flavour=hd" id="422" duration="0"/>
+<leaf ro="rw" name="Azhari TV (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=817&amp;flavour=sd" id="423" duration="0"/>
+<leaf ro="rw" name="Melody Hits (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=876&amp;flavour=sd" id="424" duration="0"/>
+<leaf ro="rw" name="Melody Aflam (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=881&amp;flavour=ld" id="425" duration="0"/>
+<leaf ro="rw" name="Melody Drama (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=882&amp;flavour=ld" id="426" duration="0"/>
+<leaf ro="rw" name="Moga Comedy (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=883&amp;flavour=ld" id="427" duration="0"/>
+<leaf ro="rw" name="MBC Masr (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=884&amp;flavour=ld" id="428" duration="0"/>
+<leaf ro="rw" name="MBC 3 (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=902&amp;flavour=ld" id="429" duration="0"/>
+<leaf ro="rw" name="RTV Pink Plus (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=439&amp;flavour=sd" id="430" duration="0"/>
+<leaf ro="rw" name="RTV Pink Extra (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=440&amp;flavour=sd" id="431" duration="0"/>
+<leaf ro="rw" name="Pink Film (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=889&amp;flavour=sd" id="432" duration="0"/>
+<leaf ro="rw" name="Pink Music (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=890&amp;flavour=sd" id="433" duration="0"/>
+<leaf ro="rw" name="NHK (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=812&amp;flavour=hd" id="434" duration="0"/>
+<leaf ro="rw" name="NHK (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=812&amp;flavour=sd" id="435" duration="0"/>
+<leaf ro="rw" name="JSTV 1 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=814&amp;flavour=sd" id="436" duration="0"/>
+<leaf ro="rw" name="JSTV 2 (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=815&amp;flavour=sd" id="437" duration="0"/>
+<leaf ro="rw" name="NTD Television (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=912&amp;flavour=ld" id="438" duration="0"/>
+<leaf ro="rw" name="Star Vijay (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=968&amp;flavour=sd" id="439" duration="0"/>
+<leaf ro="rw" name="Star Life OK (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=821&amp;flavour=sd" id="440" duration="0"/>
+<leaf ro="rw" name="Star Jalsha (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=822&amp;flavour=sd" id="441" duration="0"/>
+<leaf ro="rw" name="Star plus (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=823&amp;flavour=sd" id="442" duration="0"/>
+<leaf ro="rw" name="Star gold (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=824&amp;flavour=sd" id="443" duration="0"/>
+<leaf ro="rw" name="Channel 1 Russia (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=357&amp;flavour=sd" id="444" duration="0"/>
+<leaf ro="rw" name="Dom Kino (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=840&amp;flavour=ld" id="445" duration="0"/>
+<leaf ro="rw" name="Muzika Pervoyo (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=841&amp;flavour=ld" id="446" duration="0"/>
+<leaf ro="rw" name="Vremya (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=842&amp;flavour=ld" id="447" duration="0"/>
+<leaf ro="rw" name="Russia Today (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=726&amp;flavour=hd" id="448" duration="0"/>
+<leaf ro="rw" name="Russia Today (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=726&amp;flavour=sd" id="449" duration="0"/>
+<leaf ro="rw" name="Russia Today Espanol (HD)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=856&amp;flavour=hd" id="450" duration="0"/>
+<leaf ro="rw" name="Russia Today Espanol (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=856&amp;flavour=ld" id="451" duration="0"/>
+<leaf ro="rw" name="TV Globo Internacional (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=722&amp;flavour=sd" id="452" duration="0"/>
+<leaf ro="rw" name="Record Internacional (standard)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=728&amp;flavour=sd" id="453" duration="0"/>
+<leaf ro="rw" name="Russian Al Yaum (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=899&amp;flavour=ld" id="454" duration="0"/>
+<leaf ro="rw" name="Record News (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=909&amp;flavour=ld" id="455" duration="0"/>
+<leaf ro="rw" name="Karusel (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=919&amp;flavour=ld" id="456" duration="0"/>
+<leaf ro="rw" name="L&#39;Aktu Freebox TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=896&amp;flavour=ld" id="457" duration="0"/>
+<node ro="ro" name="Media Library" id="3"></node></node>

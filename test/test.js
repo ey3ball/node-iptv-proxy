@@ -47,3 +47,18 @@ describe('UrlProvider', function() {
         });
 
 });
+
+
+describe('VlcProvider', function() {
+        describe('#_get_url()', function() {
+                it('should parse a VLC playlist properly', function(done) {
+                        throw "NotImplemented";
+                });
+        });
+
+        describe('#_release()', function() {
+                it('should send a stop command to VLC', function(done) {
+                        throw "NotImplemented";
+                });
+        });
+});
