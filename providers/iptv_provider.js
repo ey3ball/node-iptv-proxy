@@ -7,6 +7,7 @@ IptvProvider.Url = require('./_provider_url');
 IptvProvider.StreamDev = require('./_provider_streamdev');
 IptvProvider.Vlc = require('./_provider_vlc');
 IptvProvider.Pool = require('./_provider_pool');
+IptvProvider.MultiSrc = require('./_provider_multi_src');
 
 /*
  * IptvProvider base class for all iptv stream sources

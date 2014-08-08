@@ -4,20 +4,31 @@ IptvProvider = require(__base + 'providers/iptv_provider');
 var channels = {
         list: [],
         add_url: function(name, url) {
-                this.list[name] = new IptvProvider.Url(url, { channel: name });
-                return this;
+                var prov = new IptvProvider.Url(url, { channel: name });
+
+                return this.add_provider(name, prov);
         },
         add_streamdev: function(name, host, channel) {
-                this.list[name] = new IptvProvider.StreamDev(host, {channel: channel});
-                return this;
+                var prov = new IptvProvider.StreamDev(host, {channel: channel});
+
+                return this.add_provider(name, prov);
         },
         add_vlc: function(name, host, channel) {
-                this.list[name] = new IptvProvider.Vlc(host.control_url, host.stream_url, {channel: channel});
-                return this;
+                var prov = new IptvProvider.Vlc(host.control_url, host.stream_url, {channel: channel});
+
+                return this.add_provider(name, prov);
         },
         add_provider: function(name, provider) {
-                this.list[name] = provider;
-                return this;
+                if (this.list[name]) {
+                        if (this.list[name] instanceof IptvProvider.MultiSrc) {
+                                this.list[name].add(provider);
+                        } else {
+                                this.list[name] = new IptvProvider.MultiSrc();
+                        }
+                } else {
+                        this.list[name] = provider;
+                }
+                return provider;
         },
         make_config: function() {
                 return this.list;
@@ -42,12 +53,19 @@ var streamdev_host = "http://localhost:3000";
  * returns a live stream url.
  */
 
-channels.add_streamdev("tf1hd", streamdev_host, "TF1 HD")
-        .add_streamdev("fr2hd", streamdev_host, "FRANCE2 HD")
-        .add_vlc("fr5hd", vlc1, "FBX: FRANCE5 5 (HD)")
-        .add_url("fr2_loop", "http://localhost:1234/stream/fr2hd")
-        .add_provider("arte", VlcPool.bindChan("FBX: Arte (HD)")),
-        .add_provider("nrj12", VlcPool.bindChan("FBX: NRJ 12 (HD)"));
+channels
+        /* Streamdev source */
+        .add_streamdev  ("tf1hd", streamdev_host, "TF1 HD")
+        /* Simple Vlc source */
+        .add_vlc        ("fr5hd", vlc1, "FBX: FRANCE5 5 (HD)")
+        /* Pooled Vlc source */
+        .add_provider   ("arte", VlcPool.bindChan("FBX: Arte (HD)")),
+        .add_provider   ("nrj12", VlcPool.bindChan("FBX: NRJ 12 (HD)"))
+        /* Multi-source channel ! */
+        .add_provider   ("fr2hd", VlcPool.bindChan("FBX: FRANCE 2 (HD)"))
+        .add_streamdev  ("fr2hd", streamdev_host, "FRANCE2 HD")
+        /* Simple URL example (here with a loopback to another local channel */
+        .add_url        ("fr2_loop", "http://localhost:1234/stream/fr2hd");
 
 /* basic config example */
 module.exports = {

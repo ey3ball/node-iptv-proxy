@@ -16,6 +16,9 @@ util.inherits(ProviderPool, IptvProvider);
  */
 function ProviderPool(providers, opts) {
         this.providers = providers;
+
+        this._g = {};
+        this._g._started = false;
 }
 
 ProviderPool.prototype.add = function(provider) {
@@ -25,28 +28,48 @@ ProviderPool.prototype.add = function(provider) {
                 this.providers.push(provider);
         }
 
+        console.log("add");
+        console.log(util.inspect(this.providers));
+
         return this;
 };
 
 ProviderPool.prototype.bindChan = function(channel) {
-        var new_pool = new ProviderPool(this.providers.map(function(el) {
-                return el.bindChan(channel);
-        }));
-        return new_pool;
+        var free_pool = this.providers;
+
+        function _bound() {
+                this.providers = free_pool.map(function(el) {
+                        return el.bindChan(channel);
+                });
+        }
+
+        _bound.prototype = this;
+
+        return new _bound();
 };
 
 ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
-        if (this._current_provider)
+        console.log("pool " + util.inspect(this));
+        if (this._current_provider || this._g._started)
                 throw new Error("InUse");
 
+        this._g._started = true;
+
+        console.log("start");
         var provider = this.providers.find(function(el) {
-                console.log(util.inspect(el.__proto__));
+                console.log("check " + util.inspect(el._g._started));
                 return (el._g._started == false);
         });
 
+        console.log("found " + util.inspect(provider));
+
         if (!provider) {
+                console.log("noprovider");
+                this._g._started = false;
+                console.log(util.inspect(this));
                 return err_cb("No slot available")
         } else {
+                console.log("gotprovider");
                 this._current_provider = provider;
                 return provider.start(chan_id, ok_cb, err_cb);
         }
@@ -57,5 +80,6 @@ ProviderPool.prototype.stop = function() {
                 throw new Error();
 
         this._current_provider.stop();
-        this._current_provider = false;
+        this._current_provider = undefined;
+        this._g._started = false;
 };
