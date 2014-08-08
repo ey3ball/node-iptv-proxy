@@ -69,9 +69,19 @@ ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
                 console.log(util.inspect(this));
                 return err_cb("No slot available")
         } else {
+                var self = this;
+
                 console.log("gotprovider");
                 this._current_provider = provider;
-                return provider.start(chan_id, ok_cb, err_cb);
+                return provider.start(chan_id, function(stream) {
+                        provider.once('stopped', function() {
+                                console.log(self + " got stopped");
+                                self._current_provider = undefined;
+                                self._g._started = false;
+                                self.emit('stopped');
+                        });
+                        ok_cb(stream);
+                }, err_cb);
         }
 };
 
@@ -80,6 +90,7 @@ ProviderPool.prototype.stop = function() {
                 throw new Error();
 
         this._current_provider.stop();
-        this._current_provider = undefined;
-        this._g._started = false;
+
+        /* this._current_provider = undefined;
+        this._g._started = false;*/
 };

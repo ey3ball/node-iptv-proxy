@@ -1,6 +1,10 @@
 module.exports = IptvProvider;
 
+var EventEmitter = require('events').EventEmitter;
+
 streams = require(__base + 'lib/stream-manager');
+
+util.inherits(IptvProvider, EventEmitter);
 
 IptvProvider.Http = require('./_provider_http');
 IptvProvider.Url = require('./_provider_url');
@@ -71,6 +75,8 @@ IptvProvider.prototype.stop = function() {
 
         this._g._cur_stream = undefined;
         this._g._started = false;
+
+        this.emit('stopped');
 };
 
 IptvProvider.prototype.chan = function (channel) {
