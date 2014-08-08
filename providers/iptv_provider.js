@@ -20,7 +20,13 @@ IptvProvider.Vlc = require('./_provider_vlc');
  *   stop(): stop current stream
  */
 function IptvProvider(opts) {
-        this._started = false;
+        /* the _g is for "global". this is used to store private
+         * properties that remain shared between shallow copies
+         * of IptvProvider objects.
+         * This is the reason why bindChan can work properly and
+         * specialize a single provider into child channel providers */
+        this._g = { };
+        this._g._started = false;
 
         if (!opts)
                 return;
@@ -34,14 +40,14 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
                 return err_cb("No channel selected");
         }
 
-        if (this._started) {
+        if (this._g._started) {
                 throw new Error("InUse");
         }
 
-        this._started = true;
+        this._g._started = true;
 
         this._get_stream(function (stream) {
-                this._cur_stream = stream;
+                this._g._cur_stream = stream;
 
                 var added = streams.addChan(chan_id, stream, stream.headers, function() {
                         this._end_stream(stream);
@@ -50,19 +56,19 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
 
                 ok_cb(added.inputStream);
         }.bind(this), function(e) {
-                this._started = false;
+                this._g._started = false;
                 err_cb(e);
         }.bind(this));
 };
 
 IptvProvider.prototype.stop = function() {
-        if (!this._started)
+        if (!this._g._started)
                 throw new Error();
 
-        this._end_stream(this._cur_stream);
+        this._end_stream(this._g._cur_stream);
 
-        this._cur_stream = undefined;
-        this._started = false;
+        this._g._cur_stream = undefined;
+        this._g._started = false;
 };
 
 IptvProvider.prototype.chan = function (channel) {

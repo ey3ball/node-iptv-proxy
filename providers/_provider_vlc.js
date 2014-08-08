@@ -10,10 +10,10 @@ var IptvProvider = require('./iptv_provider');
 util.inherits(VlcProvider, IptvProvider.Http);
 
 function VlcProvider(control_url, stream_url, opts) {
+        VlcProvider.super_.call(this, opts);
+
         this._control_url = control_url;
         this._stream_url = stream_url;
-
-        VlcProvider.super_.call(this, opts);
 }
 
 /* VLC channel control helper: find channe in playlist */

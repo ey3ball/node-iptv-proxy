@@ -7,9 +7,9 @@ var IptvProvider = require('./iptv_provider');
 util.inherits(StreamdevProvider, IptvProvider.Http);
 
 function StreamdevProvider(server_url, opts) {
-        this._streamdev_url = server_url;
-
         StreamdevProvider.super_.call(this, opts);
+
+        this._streamdev_url = server_url;
 }
 
 StreamdevProvider.prototype._get_url = function(url_callback) {
