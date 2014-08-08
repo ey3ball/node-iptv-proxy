@@ -15,20 +15,24 @@ var channels = {
                 this.list[name] = new IptvProvider.Vlc(host.control_url, host.stream_url, {channel: channel});
                 return this;
         },
+        add_provider: function(name, provider) {
+                this.list[name] = provider;
+                return this;
+        },
         make_config: function() {
                 return this.list;
         }
 };
 
-function make_host(host) {
-        return {
-                control_url: "http://" + host,
-                stream_url: "http://" + host + "/stream"
-        };
+function vlc_host(host) {
+        return new IptvProvider.Vlc("http://" + host,
+                                    "http://" + host + "/stream");
 }
 
-var vlc1 = vlc.server(make_host("localhost:80"));
-var vlc2 = vlc.server(make_host("localhost:81"));
+var vlc1 = vlc_host("localhost:80");
+var vlc2 = vlc_host("localhost:81");
+var VlcPool = new IptvProvider.Pool().add(vlc1).add(vlc2);
+
 var streamdev_host = "http://localhost:3000";
 
 /*
@@ -41,7 +45,9 @@ var streamdev_host = "http://localhost:3000";
 channels.add_streamdev("tf1hd", streamdev_host, "TF1 HD")
         .add_streamdev("fr2hd", streamdev_host, "FRANCE2 HD")
         .add_vlc("fr5hd", vlc1, "FBX: FRANCE5 5 (HD)")
-        .add_url("fr2_loop", "http://localhost:1234/stream/fr2hd");
+        .add_url("fr2_loop", "http://localhost:1234/stream/fr2hd")
+        .add_provider("arte", VlcPool.bindChan("FBX: Arte (HD)")),
+        .add_provider("nrj12", VlcPool.bindChan("FBX: NRJ 12 (HD)"));
 
 /* basic config example */
 module.exports = {
