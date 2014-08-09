@@ -16,8 +16,8 @@ function VlcProvider(control_url, stream_url, opts) {
         this._stream_url = stream_url;
 }
 
-/* VLC channel control helper: find channe in playlist */
-function vlc_get_chanid(control_url, channel, cb) {
+/* VLC channel control helper: find channel in playlist */
+VlcProvider.prototype._get_chanid = function(control_url, channel, cb) {
         var xml = "";
 
         var req = http.request(control_url + "/requests/playlist.xml", function (res) {
@@ -48,7 +48,7 @@ VlcProvider.prototype._get_url = function(url_callback) {
         var control_url = this._control_url;
         var stream_url = this._stream_url;
 
-        vlc_get_chanid(control_url, this._channel, function(id) {
+        this._get_chanid(control_url, this._channel, function(id) {
                 var req = http.request(control_url +
                                        "/requests/status.xml?command=pl_play&id=" + id,
                                        function(res)

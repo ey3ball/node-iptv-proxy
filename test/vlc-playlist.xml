@@ -454,5 +454,5 @@
 <leaf ro="rw" name="Russian Al Yaum (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=899&amp;flavour=ld" id="454" duration="0"/>
 <leaf ro="rw" name="Record News (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=909&amp;flavour=ld" id="455" duration="0"/>
 <leaf ro="rw" name="Karusel (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=919&amp;flavour=ld" id="456" duration="0"/>
-<leaf ro="rw" name="L&#39;Aktu Freebox TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=896&amp;flavour=ld" id="457" duration="0"/>
+<leaf ro="rw" name="L&#39;Aktu Freebox TV (bas débit)" uri="rtsp://mafreebox.freebox.fr/fbxtv_pub/stream?namespace=1&amp;service=896&amp;flavour=ld" id="457" duration="0"/></node>
 <node ro="ro" name="Media Library" id="3"></node></node>

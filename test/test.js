@@ -2,6 +2,7 @@ global.__base = __dirname + '/../';
 
 var assert = require("assert");
 var util = require("util");
+var express = require('express');
 var IptvProvider = require(__base + "providers/iptv_provider");
 var UrlProvider = require(__base + "providers/_provider_url");
 
@@ -50,15 +51,39 @@ describe('UrlProvider', function() {
 
 
 describe('VlcProvider', function() {
-        describe('#_get_url()', function() {
-                it('should parse a VLC playlist properly', function(done) {
-                        throw "NotImplemented";
+        var app = express();
+        var Vlc = new IptvProvider.Vlc("http://127.0.0.1:1234", "http://127.0.0.1:1234");
+        var VlcChan = Vlc.bindChan("Mirabelle TV (bas débit)");
+
+        app.get('/requests/playlist.xml', function (req, res) {
+                res.sendfile("vlc-playlist.xml", { 'root': __base + "test/" });
+        });
+
+        before(function(done) {
+                app.listen(1234, "127.0.0.1", undefined, function () {
+                        done();
+                });
+        });
+
+        describe('#_get_chanid()', function() {
+                it('should fetch a VLC playlist item properly', function(done) {
+                        VlcChan._get_chanid(VlcChan._control_url, VlcChan._channel, function(id) {
+                                console.log(id);
+                                if (id == 228)
+                                        done();
+                                else
+                                        throw "ParseError";
+                        });
                 });
         });
 
         describe('#_release()', function() {
                 it('should send a stop command to VLC', function(done) {
-                        throw "NotImplemented";
+                        app.get("/requests/status.xml", function(req, res) {
+                                done();
+                        });
+
+                        VlcChan._release();
                 });
         });
 });
