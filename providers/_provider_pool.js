@@ -48,10 +48,18 @@ ProviderPool.prototype.bindChan = function(channel) {
         return new _bound();
 };
 
+ProviderPool.prototype._stop_event = function() {
+        console.log(this + " stop event received");
+
+        this._current_provider = undefined;
+        this._g._started = false;
+        this.emit('stopped');
+};
+
 ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
         console.log("pool " + util.inspect(this));
         if (this._current_provider || this._g._started)
-                throw new Error("InUse");
+                err_cb("InUse");
 
         this._g._started = true;
 
@@ -74,23 +82,20 @@ ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
                 console.log("gotprovider");
                 this._current_provider = provider;
                 return provider.start(chan_id, function(stream) {
-                        provider.once('stopped', function() {
-                                console.log(self + " got stopped");
-                                self._current_provider = undefined;
-                                self._g._started = false;
-                                self.emit('stopped');
-                        });
+                        provider.once('stopped', self._stop_event.bind(self));
+
                         ok_cb(stream);
-                }, err_cb);
+                }, function(e) {
+                        self._stop_event();
+
+                        err_cb(e);
+                });
         }
 };
 
 ProviderPool.prototype.stop = function() {
         if (!this._current_provider)
-                throw new Error();
+                throw new "NotStarted";
 
         this._current_provider.stop();
-
-        /* this._current_provider = undefined;
-        this._g._started = false;*/
 };

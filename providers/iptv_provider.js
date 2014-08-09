@@ -6,10 +6,23 @@ streams = require(__base + 'lib/stream-manager');
 
 util.inherits(IptvProvider, EventEmitter);
 
+/*
+ * There are two types of providers :
+ *   1) stream providers: these focuses on getting some live media from a
+ *   backend, the media is produced in the form of a node stream. This kind of
+ *   provider implements the _get_stream and _end_stream internal methods
+ */
 IptvProvider.Http = require('./_provider_http');
 IptvProvider.Url = require('./_provider_url');
 IptvProvider.StreamDev = require('./_provider_streamdev');
 IptvProvider.Vlc = require('./_provider_vlc');
+
+/*
+ *  2) virtual providers: those focuses on implementing higher level features
+ *  (such as load balacing). They re-implement the public API of the
+ *  IptvProvider class. Such providers are mostly expected to ultimately act as
+ *  proxies for actual stream providers.
+ */
 IptvProvider.Pool = require('./_provider_pool');
 IptvProvider.MultiSrc = require('./_provider_multi_src');
 
@@ -47,7 +60,7 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
         }
 
         if (this._g._started) {
-                throw new Error("InUse");
+                return err_cb("InUse");
         }
 
         this._g._started = true;
@@ -69,7 +82,7 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
 
 IptvProvider.prototype.stop = function() {
         if (!this._g._started)
-                throw new Error();
+                throw new "NotStarted";
 
         this._end_stream(this._g._cur_stream);
 
