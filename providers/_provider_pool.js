@@ -18,7 +18,7 @@ function ProviderPool(providers, opts) {
         this.providers = providers;
 
         this._g = {};
-        this._g._started = false;
+        this._up()._started = false;
 }
 
 ProviderPool.prototype.add = function(provider) {
@@ -38,10 +38,24 @@ ProviderPool.prototype.bindChan = function(channel) {
         var free_pool = this.providers;
 
         function _bound() {
+                var i = 1;
                 this.providers = free_pool.map(function(el) {
-                        return el.bindChan(channel);
+                        var newp = el.bindChan(channel);
+                        newp.id = i++;
+                        return newp;
                 });
         }
+
+        /* The generic Pooled provider does not hold
+         * any state, its rather is in fact a composite
+         * state comprised of the state of any member
+         * provider plus the state of the particular
+         * bound instance related to the current channel
+         * Hence _g should stay empty, the state lies
+         * elsewhere */
+        this._up = function() {
+                return this;
+        };
 
         _bound.prototype = this;
 
@@ -52,29 +66,30 @@ ProviderPool.prototype._stop_event = function() {
         console.log(this + " stop event received");
 
         this._current_provider = undefined;
-        this._g._started = false;
+        this._up()._started = false;
         this.emit('stopped');
 };
 
 ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
         console.log("pool " + util.inspect(this));
-        if (this._current_provider || this._g._started)
+        if (this._current_provider || this._up()._started)
                 err_cb("InUse");
 
-        this._g._started = true;
+        this._up()._started = true;
 
         console.log("start");
         var provider = this.providers.find(function(el) {
-                console.log("check " + util.inspect(el._g._started));
-                return (el._g._started == false);
+                var ok = el.available();
+                console.log("check " + ok);
+                return ok;
         });
 
         console.log("found " + util.inspect(provider));
 
         if (!provider) {
                 console.log("noprovider");
-                this._g._started = false;
-                console.log(util.inspect(this));
+                this._up()._started = false;
+                console.log("nope " + util.inspect(this));
                 return err_cb("No slot available")
         } else {
                 var self = this;
@@ -98,4 +113,10 @@ ProviderPool.prototype.stop = function() {
                 throw new "NotStarted";
 
         this._current_provider.stop();
+};
+
+ProviderPool.prototype.available = function() {
+        return this.providers.some(function(el) {
+                return (el.available());
+        });
 };

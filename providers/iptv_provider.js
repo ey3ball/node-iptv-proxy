@@ -43,9 +43,15 @@ function IptvProvider(opts) {
          * properties that remain shared between shallow copies
          * of IptvProvider objects.
          * This is the reason why bindChan can work properly and
-         * specialize a single provider into child channel providers */
+         * specialize a single provider into child channel providers
+         *
+         * _g must not be accessed directly but through .up() which
+         * will direct calls to the correct context (channel local
+         * or global)
+         */
         this._g = { };
-        this._g._started = false;
+        // IptvProvider._up().call(this)._started = false;
+        this._up()._started = false;
 
         if (!opts)
                 return;
@@ -55,18 +61,19 @@ function IptvProvider(opts) {
 }
 
 IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
+        console.log("iptv start");
         if (!this._channel) {
                 return err_cb("No channel selected");
         }
 
-        if (this._g._started) {
+        if (this._up()._started) {
                 return err_cb("InUse");
         }
 
-        this._g._started = true;
+        this._up()._started = true;
 
         this._get_stream(function (stream) {
-                this._g._cur_stream = stream;
+                this._up()._cur_stream = stream;
 
                 var added = streams.addChan(chan_id, stream, stream.headers, function() {
                         this._end_stream(stream);
@@ -75,21 +82,45 @@ IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
 
                 ok_cb(added.inputStream);
         }.bind(this), function(e) {
-                this._g._started = false;
+                this._up()._started = false;
                 err_cb(e);
         }.bind(this));
 };
 
 IptvProvider.prototype.stop = function() {
-        if (!this._g._started)
+        if (!this._up()._started)
                 throw new "NotStarted";
 
-        this._end_stream(this._g._cur_stream);
+        this._end_stream(this._up()._cur_stream);
 
-        this._g._cur_stream = undefined;
-        this._g._started = false;
+        this._up()._cur_stream = undefined;
+        this._up()._started = false;
 
         this.emit('stopped');
+};
+
+/*
+ * Available vs this.(_g).started:
+ *
+ * this.(_g).started keeps track of the current internal state for
+ * a given (provider, chan) tuple. Its role is to prevent the same
+ * channel from being started twice and hence starting an unecessary
+ * stream
+ *
+ * available() on the other gives an indication regarding the readiness of the
+ * provider backend. for simple providers such as http this is equivalent to
+ * this.(_g).started, however for load balancing extensions, beeing available
+ * means that we are able to find an available provider instance in the pool.
+ * With a pooled channel, these concepts relate as follows :
+ *
+ * channel _started ?
+ *      => available() instance in pool
+ *              => underlying simple provider available() = not _started
+ */
+IptvProvider.prototype.available = function() {
+        console.log("available ?");
+        console.log(util.inspect(this));
+        return !this._up()._started;
 };
 
 IptvProvider.prototype.chan = function (channel) {
@@ -153,4 +184,8 @@ IptvProvider.prototype._end_stream = function(current_stream) {
         console.log("_end_stream undefined");
 
         throw "Meh";
+};
+
+IptvProvider.prototype._up = function() {
+        return this._g;
 };
