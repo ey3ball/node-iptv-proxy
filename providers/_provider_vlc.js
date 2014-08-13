@@ -36,12 +36,16 @@ VlcProvider.prototype._get_chanid = function(control_url, channel, cb) {
                                 cb("VLC Channel not found in playlist");
                         } else {
                                 var id = res.attr("id").value();
-                                console.log("VLC_GET_CHANID: " + id); 
+                                console.log("VLC_GET_CHANID: " + id);
                                 cb(null, { id: id });
                         }
                 });
         });
-        
+
+        req.on('error', function(e) {
+                cb("Get Vlc chan ID failed");
+        });
+
         req.end();
 }
 
@@ -60,6 +64,10 @@ VlcProvider.prototype._get_url = function(cb) {
                                 else
                                         cb("Could not find VLC channel");
                         });
+
+                req.on('error', function(e) {
+                        cb("Vlc start failed");
+                });
 
                 req.end();
         });

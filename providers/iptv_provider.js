@@ -75,7 +75,7 @@ IptvProvider.prototype.start = function(chan_id, cb) {
         this._get_stream(function (err, data) {
                 if (err) {
                         this._up()._started = false;
-                        cb(e, data);
+                        cb(err, data);
                         return;
                 }
 

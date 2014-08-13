@@ -70,6 +70,30 @@ ProviderPool.prototype._stop_event = function() {
         this.emit('stopped');
 };
 
+ProviderPool.prototype._try_provider = function(chan_id, provider, cb) {
+        var self = this;
+
+        console.log("try_provider " + util.inspect(provider));
+
+        if (!provider.available()) {
+                cb("Not available anymore, next");
+                return;
+        }
+
+        this._current_provider = provider;
+        return provider.start(chan_id, function(err, data) {
+                if (err) {
+                        self._stop_event();
+                        cb(err);
+                        return;
+                }
+
+                provider.once('stopped', self._stop_event.bind(self));
+
+                cb(null, data);
+        });
+}
+
 ProviderPool.prototype.start = function(chan_id, cb) {
         console.log("pool " + util.inspect(this));
         if (this._current_provider || this._up()._started)
@@ -78,36 +102,32 @@ ProviderPool.prototype.start = function(chan_id, cb) {
         this._up()._started = true;
 
         console.log("start");
-        var provider = this.providers.find(function(el) {
+        var candidates = this.providers.filter(function(el) {
                 var ok = el.available();
                 console.log("check " + ok);
                 return ok;
-        });
+        }).reverse();
 
-        console.log("found " + util.inspect(provider));
-
-        if (!provider) {
+        if (!candidates.length) {
                 console.log("noprovider");
                 this._up()._started = false;
                 console.log("nope " + util.inspect(this));
                 return cb("No slot available")
-        } else {
-                var self = this;
-
-                console.log("gotprovider");
-                this._current_provider = provider;
-                return provider.start(chan_id, function(err, data) {
-                        if (err) {
-                                self._stop_event();
-                                cb(e);
-                                return;
-                        }
-
-                        provider.once('stopped', self._stop_event.bind(self));
-
-                        cb(null, data);
-                });
         }
+
+        function try_next(err, data) {
+                if (err && candidates.length) {
+                        if (err != "FirstTry")
+                                console.log("POOL: provider failed, falling back to next one");
+
+                        this._try_provider(chan_id, candidates.pop(), try_next.bind(this));
+                        return;
+                }
+
+                cb(err, data);
+        };
+
+        try_next.bind(this)("FirstTry", null);
 };
 
 ProviderPool.prototype.stop = function() {

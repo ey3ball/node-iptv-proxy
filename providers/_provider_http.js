@@ -28,7 +28,7 @@ HttpProvider.prototype._get_stream = function(cb) {
                 });
 
                 req.on('error', function(e) {
-                        console.log("CHAN: " + chan + " failed to start - " + e.message);
+                        console.log("CHAN: " + url + " failed to stream - " + e.message);
 
                         cb("GetStream failed");
                 });

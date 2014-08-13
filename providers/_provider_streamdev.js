@@ -36,11 +36,17 @@ StreamdevProvider.prototype._get_url = function(cb) {
                                 return prev;
                         }, undefined);
 
-                        if (res)
+                        if (res) {
                                 cb(null, { url: res });
-                        else
-                                cb("Streamdev channel not found");
+                        } else {
+                                console.log("Streamdev channel " + channel + " not found");
+                                cb("Streamdev channel " + channel + " not found");
+                        }
                 });
+        });
+
+        req.on('error', function(e) {
+                cb("GetStreamdev playlist failed");
         });
 
         req.end();
