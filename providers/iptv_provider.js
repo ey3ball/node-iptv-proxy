@@ -34,7 +34,7 @@ IptvProvider.MultiSrc = require('./_provider_multi_src');
  *     this can be used to bind at initialization time.
  *
  * public methods:
- *   start(id, ok_cb, err_cb): attempt to start channel. Callback with a node
+ *   start(id, cb): attempt to start channel. Callback with a node
  *     stream if successfull.
  *   stop(): stop current stream
  */
@@ -60,30 +60,33 @@ function IptvProvider(opts) {
                 this._channel = opts.channel;
 }
 
-IptvProvider.prototype.start = function(chan_id, ok_cb, err_cb) {
+IptvProvider.prototype.start = function(chan_id, cb) {
         console.log("iptv start");
         if (!this._channel) {
-                return err_cb("No channel selected");
+                return cb("No channel selected", null);
         }
 
         if (this._up()._started) {
-                return err_cb("InUse");
+                return cb("InUse", null);
         }
 
         this._up()._started = true;
 
-        this._get_stream(function (stream) {
-                this._up()._cur_stream = stream;
+        this._get_stream(function (err, data) {
+                if (err) {
+                        this._up()._started = false;
+                        cb(e, data);
+                        return;
+                }
 
-                var added = streams.addChan(chan_id, stream, stream.headers, function() {
-                        this._end_stream(stream);
+                this._up()._cur_stream = data.stream;
+
+                var added = streams.addChan(chan_id, data.stream, data.stream.headers, function() {
+                        this._end_stream(data.stream);
                         this.stop();
                 }.bind(this));
 
-                ok_cb(added.inputStream);
-        }.bind(this), function(e) {
-                this._up()._started = false;
-                err_cb(e);
+                cb(null, { stream: added.inputStream });
         }.bind(this));
 };
 
@@ -174,7 +177,7 @@ IptvProvider.prototype.toString = function() {
  *      - _make_stream: create a stream and pass it down to stream_cb
  *      - _end_stream: stop a running stream
  */
-IptvProvider.prototype._get_stream = function(stream_cb, err_cb) {
+IptvProvider.prototype._get_stream = function(cb) {
         console.log("_make_stream undefined");
 
         throw "Meh";

@@ -33,10 +33,11 @@ VlcProvider.prototype._get_chanid = function(control_url, channel, cb) {
 
                         if (!res) {
                                 console.log("VLC_GET_CHANID: " + channel + " not found !");
+                                cb("VLC Channel not found in playlist");
                         } else {
                                 var id = res.attr("id").value();
                                 console.log("VLC_GET_CHANID: " + id); 
-                                cb(id);
+                                cb(null, { id: id });
                         }
                 });
         });
@@ -44,20 +45,20 @@ VlcProvider.prototype._get_chanid = function(control_url, channel, cb) {
         req.end();
 }
 
-VlcProvider.prototype._get_url = function(url_callback) {
+VlcProvider.prototype._get_url = function(cb) {
         var control_url = this._control_url;
         var stream_url = this._stream_url;
 
-        this._get_chanid(control_url, this._channel, function(id) {
+        this._get_chanid(control_url, this._channel, function(err, data) {
                 var req = http.request(control_url +
-                                       "/requests/status.xml?command=pl_play&id=" + id,
+                                       "/requests/status.xml?command=pl_play&id=" + data.id,
                                        function(res)
                         {
                                 console.log("PROVIDER: VLC server returned " + res.statusCode);
                                 if (res.statusCode == 200)
-                                        url_callback(stream_url);
+                                        cb(null, { url: stream_url });
                                 else
-                                        url_callback(undefined);
+                                        cb("Could not find VLC channel");
                         });
 
                 req.end();

@@ -224,14 +224,23 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
 
         console.log("TRANSCODE: " + chan + " " + profile);
 
-        /* check wether the channel is already being transcoded*/
-        changlue.try_chan("trans-" + profile + "-" + chan, function(liveStream) {
-                res.set(liveStream.headers);
-                streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
-        }, function() {
+        changlue.try_chan("trans-" + profile + "-" + chan, function(err, data) {
+                /* check wether the channel is already being transcoded*/
+                if (!err) {
+                        res.set(data.stream.headers);
+                        streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
+
+                        return;
+                }
+
                 /* if not, grab the corresponding (uncompressed) source stream
                  * and fire up ffmpeg */
-                changlue.get_chan(chan, function(sourceStream) {
+                changlue.get_chan(chan, function(err, data) {
+                        if (err) {
+                                res.send(503, "Failed to start stream (" + err + ")");
+                                return;
+                        }
+
                         var fakeClient = new (stream.PassThrough)({allowHalfOpen: false});
                         var transcodedChan = new (stream.PassThrough)();
 
@@ -263,8 +272,6 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
                                         streams.killChan("trans-" + profile + "-" + chan);
                                 })
                                 .writeToStream(transcodedChan);
-                }, function() {
-                        res.send(503, "Failed to start stream");
                 });
         });
 });
@@ -272,14 +279,17 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
 app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
-        changlue.get_chan(chan, function(liveStream) {
-                res.set(liveStream.headers);
-                streams.addClient(chan, res, "http-sink");
-        }, function(err) {
-                if (err == "NotFound")
+        changlue.get_chan(chan, function(err, data) {
+                if (err == "NotFound") {
                         res.send(404, "not found");
-                else
+                        return;
+                } else if (err) {
                         res.send(503, "Failed to start stream");
+                        return;
+                }
+
+                res.set(data.stream.headers);
+                streams.addClient(chan, res, "http-sink");
         });
 });
 

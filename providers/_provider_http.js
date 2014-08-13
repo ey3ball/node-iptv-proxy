@@ -19,28 +19,31 @@ function HttpProvider(opts) {
         HttpProvider.super_.call(this, opts);
 }
 
-HttpProvider.prototype._get_stream = function(stream_cb, err_cb) {
+HttpProvider.prototype._get_stream = function(cb) {
         function stream_url(url) {
                 var req = http.request(url, function(res) {
                         console.log("CHAN_GET: " + url + " " + res.statusCode);
 
-                        stream_cb(res);
+                        cb(null, { stream: res });
                 });
 
                 req.on('error', function(e) {
                         console.log("CHAN: " + chan + " failed to start - " + e.message);
 
-                        err_cb();
+                        cb("GetStream failed");
                 });
 
                 req.end();
         };
 
         if (!this._fixed_url) {
-                this._get_url(function(url) {
-                        stream_url(url);
-                }, function () {
-                        err_cb();
+                this._get_url(function(err, data) {
+                        if (err) {
+                                cb("Could not GetUrl");
+                                return;
+                        }
+
+                        stream_url(data.url);
                 });
         } else {
                 stream_url(this._fixed_url);

@@ -25,8 +25,13 @@ describe('DummyProvider', function() {
         describe('#start()', function() {
                 var dummy = new DummyProvider();
 
-                it('should trigger err_cb when .chan has not been called', function(done) {
-                        dummy.start("fakeid", function () { throw "FailTest" }, function () { done() });
+                it('should trigger an error when .chan has not been called', function(done) {
+                        dummy.start("fakeid", function (err, data) {
+                                if (err)
+                                        done();
+                                else
+                                        throw "FailTest";
+                        });
                 });
         });
 });
@@ -34,19 +39,18 @@ describe('DummyProvider', function() {
 describe('UrlProvider', function() {
         describe('#start()', function() {
                 it('should return a stream somehow', function(done) {
-                        (new UrlProvider("http://www.google.fr")).start("fakeid", function(stream) {
-                                if (!stream)
+                        (new UrlProvider("http://www.google.fr")).start("fakeid", function(err, data) {
+                                if (err)
+                                        throw "OperationFailed" + err;
+                                if (!data.stream)
                                         throw "InvalidStream";
-                                if (!stream.headers)
+                                if (!data.stream.headers)
                                         throw "InvalidStream2";
 
                                 done();
-                        }, function () {
-                                throw "FailCbCalled";
                         });
                 });
         });
-
 });
 
 
@@ -67,9 +71,8 @@ describe('VlcProvider', function() {
 
         describe('#_get_chanid()', function() {
                 it('should fetch a VLC playlist item properly', function(done) {
-                        VlcChan._get_chanid(VlcChan._control_url, VlcChan._channel, function(id) {
-                                console.log(id);
-                                if (id == 228)
+                        VlcChan._get_chanid(VlcChan._control_url, VlcChan._channel, function(err, data) {
+                                if (!err && data.id == 228)
                                         done();
                                 else
                                         throw "ParseError";

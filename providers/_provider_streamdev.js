@@ -12,7 +12,7 @@ function StreamdevProvider(server_url, opts) {
         this._streamdev_url = server_url;
 }
 
-StreamdevProvider.prototype._get_url = function(url_callback) {
+StreamdevProvider.prototype._get_url = function(cb) {
         var channel = this._channel;
         var base_url = this._streamdev_url;
 
@@ -36,7 +36,10 @@ StreamdevProvider.prototype._get_url = function(url_callback) {
                                 return prev;
                         }, undefined);
 
-                        url_callback(res);
+                        if (res)
+                                cb(null, { url: res });
+                        else
+                                cb("Streamdev channel not found");
                 });
         });
 

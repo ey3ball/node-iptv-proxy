@@ -70,10 +70,10 @@ ProviderPool.prototype._stop_event = function() {
         this.emit('stopped');
 };
 
-ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
+ProviderPool.prototype.start = function(chan_id, cb) {
         console.log("pool " + util.inspect(this));
         if (this._current_provider || this._up()._started)
-                err_cb("InUse");
+                cb("InUse");
 
         this._up()._started = true;
 
@@ -90,20 +90,22 @@ ProviderPool.prototype.start = function(chan_id, ok_cb, err_cb) {
                 console.log("noprovider");
                 this._up()._started = false;
                 console.log("nope " + util.inspect(this));
-                return err_cb("No slot available")
+                return cb("No slot available")
         } else {
                 var self = this;
 
                 console.log("gotprovider");
                 this._current_provider = provider;
-                return provider.start(chan_id, function(stream) {
+                return provider.start(chan_id, function(err, data) {
+                        if (err) {
+                                self._stop_event();
+                                cb(e);
+                                return;
+                        }
+
                         provider.once('stopped', self._stop_event.bind(self));
 
-                        ok_cb(stream);
-                }, function(e) {
-                        self._stop_event();
-
-                        err_cb(e);
+                        cb(null, data);
                 });
         }
 };
