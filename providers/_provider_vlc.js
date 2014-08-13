@@ -54,6 +54,11 @@ VlcProvider.prototype._get_url = function(cb) {
         var stream_url = this._stream_url;
 
         this._get_chanid(control_url, this._channel, function(err, data) {
+                if (err) {
+                        cb(err);
+                        return;
+                }
+
                 var req = http.request(control_url +
                                        "/requests/status.xml?command=pl_play&id=" + data.id,
                                        function(res)
