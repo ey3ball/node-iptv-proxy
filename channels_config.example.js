@@ -1,46 +1,39 @@
-vlc = require(__base + 'providers/vlc-provider');
-streamdev = require(__base + 'providers/streamdev-provider');
-simple = require(__base + 'providers/simple-http-provider');
 default_profiles = require(__base + 'lib/transcoding-profiles');
+channels = require(__base + 'lib/chanlist-builder');
 
-/*
- * Two VLC instances are started, enabling the playback of two
- * channels in parralel
- */
+IptvProvider = require(__base + 'providers/iptv_provider');
 
-function make_host(host) {
-        return {
-                control_url: "http://" + host,
-                stream_url: "http://" + host + "/stream"
-        };
+function vlc_host(host) {
+        return new IptvProvider.Vlc("http://" + host,
+                                    "http://" + host + "/stream");
 }
 
-var vlc1 = vlc.server(make_host("localhost:80"));
-var vlc2 = vlc.server(make_host("localhost:81"));
+var vlc1 = vlc_host("localhost:80");
+var vlc2 = vlc_host("localhost:81");
+var VlcPool = new IptvProvider.Pool().add(vlc1).add(vlc2);
 
-var vlc_pool = [ vlc1, vlc2 ];
-
-/*
- * Local DVB tunners are also added through VDR+Streamdev
- */
-var stm_host = "http://localhost:3000"
+var streamdev_host = "http://localhost:3000";
 
 /*
- * The simple-http provider is used to re-stream a VLC channel
- * with another name. This is not very usefull, but this provider
- * could also be used to "chain" node-iptv-proxy instances, or
- * simply stream a pre-recorded file hosted on a static http server.
+ * List available channels.
+ *
+ * Each channel is registered using a setup function that
+ * returns a live stream url.
  */
-var loop_url = "http://localhost:1234/stream/fr2_hd";
 
-var config_channels = {
-        "fr2_hd": vlc.chan("FBX: France 2 HD (TNT)").pool(vlc_pool),
-        "fr4_hd": vlc.chan("FBX: France 4 (HD)").pool(vlc_pool),
-        "fr5_hd": vlc.chan("FBX: France 5 (HD)").pool(vlc_pool),
-        "tf1hd": streamdev.chan("TF1 HD", stm_host),
-        "m6hd": streamdev.chan("M6 HD", stm_host),
-        "fr2_hd_loop": simple.chan(loop_url),
-};
+channels
+        /* Streamdev source */
+        .addStreamdev   ("tf1hd", streamdev_host, "TF1 HD")
+        /* Simple Vlc source */
+        .addVlc         ("fr5hd", vlc1, "FBX: FRANCE5 5 (HD)")
+        /* Pooled Vlc source */
+        .addProvider    ("arte", VlcPool.bindChan("FBX: Arte (HD)"))
+        .addProvider    ("nrj12", VlcPool.bindChan("FBX: NRJ 12 (HD)"))
+        /* Multi-source channel ! */
+        .addProvider    ("fr2hd", VlcPool.bindChan("FBX: FRANCE 2 (HD)"))
+        .addStreamdev   ("fr2hd", streamdev_host, "FRANCE2 HD")
+        /* Simple URL example (here with a loopback to another local channel */
+        .addUrl         ("fr2_loop", "http://localhost:1234/stream/fr2hd");
 
 /* basic config example */
 module.exports = {
@@ -50,7 +43,7 @@ module.exports = {
         },
 
         /* attach channel list */
-        channels: config_channels,
+        channels: channels.genList(),
 
         /* enable transcoding with default profiles
          * we ship 3 default profiles :
