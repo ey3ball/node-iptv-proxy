@@ -227,7 +227,6 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
         changlue.try_chan("trans-" + profile + "-" + chan, function(err, data) {
                 /* check wether the channel is already being transcoded*/
                 if (!err) {
-                        res.set(data.stream.headers);
                         streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
 
                         return;
@@ -241,18 +240,18 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
                                 return;
                         }
 
-                        var sourceStream = data.stream;
+                        // var sourceStream = data.stream;
                         var fakeClient = new (stream.PassThrough)({allowHalfOpen: false});
                         var transcodedChan = new (stream.PassThrough)();
 
-                        res.writeHead(200, sourceStream.headers);
+                        // res.writeHead(200, sourceStream.headers);
 
                         /* register fake (internal) client on source stream */
                         streams.addClient(chan, fakeClient, "transcode-" + profile);
 
                         /* register new transcoding channel and attach actual client to it */
                         streams.addChan("trans-" + profile + "-" + chan,
-                                        transcodedChan, sourceStream.headers,
+                                        transcodedChan, null,
                                         function() {
                                                 fakeClient.end();
 
@@ -281,6 +280,7 @@ app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
         changlue.get_chan(chan, function(err, data) {
+                console.log("CALLBACK - " + err + " - " + data);
                 if (err == "NotFound") {
                         res.send(404, "not found");
                         return;
@@ -289,7 +289,7 @@ app.get('/stream/:chan', function(req, res) {
                         return;
                 }
 
-                res.set(data.stream.headers);
+                // res.set(data.stream.headers);
                 streams.addClient(chan, res, "http-sink");
         });
 });

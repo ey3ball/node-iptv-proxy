@@ -60,7 +60,7 @@ function IptvProvider(opts) {
                 this._channel = opts.channel;
 }
 
-IptvProvider.prototype.start = function(chan_id, cb) {
+IptvProvider.prototype._startAsync = function(chan_id, cb, async) {
         console.log("iptv start");
         if (!this._channel) {
                 return cb("No channel selected", null);
@@ -72,10 +72,19 @@ IptvProvider.prototype.start = function(chan_id, cb) {
 
         this._up()._started = true;
 
+        if (!async)
+                streams.createChan(chan_id);
+
         this._get_stream(function (err, data) {
                 if (err) {
                         this._up()._started = false;
-                        cb(err, data);
+
+                        if (async) {
+                                cb(err, data);
+                        } else {
+                                streams.killChan(chan_id);
+                        }
+
                         return;
                 }
 
@@ -86,8 +95,16 @@ IptvProvider.prototype.start = function(chan_id, cb) {
                         this.stop();
                 }.bind(this));
 
-                cb(null, { stream: added.inputStream });
+                if (async)
+                        cb(null, { stream: null });
         }.bind(this));
+
+        if (!async)
+                cb(null, null);
+};
+
+IptvProvider.prototype.start = function(chan_id, cb) {
+        this._startAsync(chan_id, cb, false);
 };
 
 IptvProvider.prototype.stop = function() {
