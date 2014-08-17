@@ -94,14 +94,14 @@ ProviderPool.prototype._try_provider = function(chan_id, provider, cb) {
         }, true);
 }
 
-ProviderPool.prototype._startAsync = function(chan_id, cb, async) {
+ProviderPool.prototype._startAsync = function(chan_id, cb) {
         console.log("pool start" + util.inspect(this));
         if (this._current_provider || this._up()._started)
                 cb("InUse " + this._current_provider + " - " + this._up()._started);
 
         this._up()._started = true;
 
-        if (!async)
+        if (!cb)
                 streams.createChan(chan_id);
 
         console.log("start");
@@ -126,7 +126,7 @@ ProviderPool.prototype._startAsync = function(chan_id, cb, async) {
                         this._try_provider(chan_id, candidates.pop(), try_next.bind(this));
                         return;
                 } else if (err) {
-                        if (async)
+                        if (cb)
                                 cb(err, data);
                         else
                                 streams.killChan(chan_id);
@@ -135,12 +135,11 @@ ProviderPool.prototype._startAsync = function(chan_id, cb, async) {
 
         try_next.bind(this)("FirstTry", null);
 
-        if (!async)
-                cb(null, null);
+        return;
 };
 
-ProviderPool.prototype.start = function(chan_id, cb) {
-        this._startAsync(chan_id, cb, false);
+ProviderPool.prototype.start = function(chan_id) {
+        return this._startAsync(chan_id, undefined);
 };
 
 ProviderPool.prototype.stop = function() {

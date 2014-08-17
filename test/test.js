@@ -26,7 +26,7 @@ describe('DummyProvider', function() {
                 var dummy = new DummyProvider();
 
                 it('should trigger an error when .chan has not been called', function(done) {
-                        dummy.start("fakeid", function (err, data) {
+                        dummy._startAsync("fakeid", function (err, data) {
                                 if (err)
                                         done();
                                 else
@@ -39,7 +39,7 @@ describe('DummyProvider', function() {
 describe('UrlProvider', function() {
         describe('#start()', function() {
                 it('should return a stream somehow', function(done) {
-                        (new UrlProvider("http://www.google.fr")).start("fakeid", function(err, data) {
+                        (new UrlProvider("http://www.google.fr"))._startAsync("fakeid", function(err, data) {
                                 if (err)
                                         throw "OperationFailed" + err;
                                 if (!data.stream)

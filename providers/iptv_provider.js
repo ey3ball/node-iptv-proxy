@@ -34,8 +34,7 @@ IptvProvider.MultiSrc = require('./_provider_multi_src');
  *     this can be used to bind at initialization time.
  *
  * public methods:
- *   start(id, cb): attempt to start channel. Callback with a node
- *     stream if successfull.
+ *   start(id): attempt to start channel.
  *   stop(): stop current stream
  */
 function IptvProvider(opts) {
@@ -60,7 +59,7 @@ function IptvProvider(opts) {
                 this._channel = opts.channel;
 }
 
-IptvProvider.prototype._startAsync = function(chan_id, cb, async) {
+IptvProvider.prototype._startAsync = function(chan_id, cb) {
         console.log("iptv start");
         if (!this._channel) {
                 return cb("No channel selected", null);
@@ -72,14 +71,14 @@ IptvProvider.prototype._startAsync = function(chan_id, cb, async) {
 
         this._up()._started = true;
 
-        if (!async)
+        if (!cb)
                 streams.createChan(chan_id);
 
         this._get_stream(function (err, data) {
                 if (err) {
                         this._up()._started = false;
 
-                        if (async) {
+                        if (cb) {
                                 cb(err, data);
                         } else {
                                 streams.killChan(chan_id);
@@ -95,16 +94,15 @@ IptvProvider.prototype._startAsync = function(chan_id, cb, async) {
                         this.stop();
                 }.bind(this));
 
-                if (async)
+                if (cb)
                         cb(null, { stream: null });
         }.bind(this));
 
-        if (!async)
-                cb(null, null);
+        return;
 };
 
-IptvProvider.prototype.start = function(chan_id, cb) {
-        this._startAsync(chan_id, cb, false);
+IptvProvider.prototype.start = function(chan_id) {
+        this._startAsync(chan_id, undefined);
 };
 
 IptvProvider.prototype.stop = function() {

@@ -224,27 +224,25 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
 
         console.log("TRANSCODE: " + chan + " " + profile);
 
-        changlue.try_chan("trans-" + profile + "-" + chan, function(err, data) {
-                /* check wether the channel is already being transcoded*/
-                if (!err) {
-                        streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
+        try {
+                /* check wether the channel is already being transcoded */
+                changlue.try_subscribe("trans-" + profile + "-" + chan);
+                streams.addClient("trans-" + profile + "-" + chan, res, "http-sink");
 
+                return;
+        } catch(err) {
+                if (err != "NotFound") {
+                        res.send(503, "Internal error");
                         return;
                 }
 
-                /* if not, grab the corresponding (uncompressed) source stream
-                 * and fire up ffmpeg */
-                changlue.get_chan(chan, function(err, data) {
-                        if (err) {
-                                res.send(503, "Failed to start stream (" + err + ")");
-                                return;
-                        }
+                try {
+                        /* if not, grab the corresponding (uncompressed) source stream
+                         * and fire up ffmpeg */
+                        changlue.do_subscribe(chan);
 
-                        // var sourceStream = data.stream;
                         var fakeClient = new (stream.PassThrough)({allowHalfOpen: false});
                         var transcodedChan = new (stream.PassThrough)();
-
-                        // res.writeHead(200, sourceStream.headers);
 
                         /* register fake (internal) client on source stream */
                         streams.addClient(chan, fakeClient, "transcode-" + profile);
@@ -272,26 +270,30 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
                                         streams.killChan("trans-" + profile + "-" + chan);
                                 })
                                 .writeToStream(transcodedChan);
-                });
-        });
+                } catch(err) {
+                        res.send(503, "Failed to start stream (" + err + ")");
+                        return;
+                }
+        }
 });
 
 app.get('/stream/:chan', function(req, res) {
         var chan = req.params.chan;
 
-        changlue.get_chan(chan, function(err, data) {
-                console.log("CALLBACK - " + err + " - " + data);
+        try {
+                var ret = changlue.do_subscribe(chan);
+                console.log("SUBSCRIBE: " + chan + " - " + ret);
+        } catch (err) {
                 if (err == "NotFound") {
                         res.send(404, "not found");
-                        return;
                 } else if (err) {
                         res.send(503, "Failed to start stream");
-                        return;
                 }
 
-                // res.set(data.stream.headers);
-                streams.addClient(chan, res, "http-sink");
-        });
+                return;
+        }
+
+        streams.addClient(chan, res, "http-sink");
 });
 
 app.listen(config.server.port);
