@@ -241,6 +241,7 @@ app.get('/transcode.:profile?/:chan', function(req, res) {
                                 return;
                         }
 
+                        var sourceStream = data.stream;
                         var fakeClient = new (stream.PassThrough)({allowHalfOpen: false});
                         var transcodedChan = new (stream.PassThrough)();
 
