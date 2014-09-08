@@ -130,6 +130,9 @@ ProviderPool.prototype._startAsync = function(chan_id, cb) {
                                 cb(err, data);
                         else
                                 streams.killChan(chan_id);
+                } else {
+                        if (cb)
+                                cb(err, data);
                 }
         };
 
