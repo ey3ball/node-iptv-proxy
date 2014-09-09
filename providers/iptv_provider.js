@@ -25,6 +25,7 @@ IptvProvider.Vlc = require('./_provider_vlc');
  */
 IptvProvider.Pool = require('./_provider_pool');
 IptvProvider.MultiSrc = require('./_provider_multi_src');
+IptvProvider.Forward = require('./_provider_forward');
 
 /*
  * IptvProvider base class for all iptv stream sources
